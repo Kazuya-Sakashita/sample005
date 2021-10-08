@@ -1,0 +1,20 @@
+
+<h1>ホーム画面</h1>
+
+<h2>エンジニア</h2>
+<% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+  <!-- ユーザーがログインしていた時の処理 -->
+
+  <h4> メールアドレス： <%= current_user.email %> </h4>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
+<% else %>
+  <!-- ユーザーがログインしていなかった時の処理 -->
+  <%= link_to "ログイン", new_user_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
+  <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
+<% end %>
+
+
+
+<h2>管理者</h2>
+<%= link_to 'ログイン', new_admin_session_path %>
+<%= link_to '新規登録', new_admin_registration_path %>
