@@ -9,3 +9,21 @@
 
 <li><%= link_to "基本情報", edit_mypage_path(current_user) %></li>
 <li><%= link_to "稼働管理", managements_path(current_user)%></li>
+<hr>
+
+<div>
+    <h2>登録情報</h2>
+    <% @user.each do |user| %> 
+        <li>メールアドレス: <%= user.email %></li>
+        <li>氏名:          <%= user.name %></li>
+        <li>電話番号:       <%= user.phone_number %></li>
+        <li>スキル:         <%= user.skills %></li>
+        <li>スキルレベル:    <%= user.skill_level %></li>
+        <li>Githubアカウント: <%= user.github_url %></li>
+        <li>口座情報:       <%= user.account_info %></li>
+        <li>単価:          <%= user.unit_price %></li>
+        <li>単価単位:       <%= user.unit %></li>
+    <% end %>
+
+
+</div>

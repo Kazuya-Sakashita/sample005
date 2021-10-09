@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
 
+  resources :users
   resources :mypages
   resources :managements
 
