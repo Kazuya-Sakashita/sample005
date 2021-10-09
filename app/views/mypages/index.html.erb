@@ -4,3 +4,8 @@
     <h4> メールアドレス： <%= current_user.email %> </h4>
     <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
 <% end %>
+
+<br>
+
+<li><%= link_to "基本情報", edit_mypage_path(current_user) %></li>
+<li><%= link_to "稼働管理", "#" %></li>
