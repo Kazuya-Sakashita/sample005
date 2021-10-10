@@ -3,10 +3,11 @@ class ManagementsController < ApplicationController
   # ログイン済ユーザーのみにアクセスを許可する
 
   def index
-    @management = Management.where(id: current_user.id)
+    @management = Management.where(user_id: current_user.id)
   end
   def edit
     @management = Management.find(params[:id])
+    
   end
 
 
