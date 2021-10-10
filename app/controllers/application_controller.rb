@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
         when User
             mypages_path
         when Admin
-            managements_path
+            admins_managements_path
         end
     end
 

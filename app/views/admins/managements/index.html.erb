@@ -1,0 +1,8 @@
+<h1><管理者画面　　稼働管理画面　一覧></h1>
+<% if admin_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+    <h4> メールアドレス： <%= current_admin.email %> </h4>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+<% end %>
+
+
+
