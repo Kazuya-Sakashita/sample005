@@ -41,3 +41,6 @@ yarn-debug.log*
 
 #メンテナンスは不要、対象から除外
 /vendor/*
+
+# dotenv
+.env
