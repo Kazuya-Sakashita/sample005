@@ -23,7 +23,8 @@
     </div>
     <div class="field">
     <%= f.label :skill_level %><br />
-    <%= f.text_field :skill_level, autofocus: true %>
+    <%= f.select :skill_level, User.skill_levels.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
+
     </div>
     <div class="field">
     <%= f.label :github_url %><br />
@@ -36,10 +37,11 @@
     <div class="field">
     <%= f.label :unit_price %><br />
     <%= f.text_field :unit_price, autofocus: true %>
+
     </div>
     <div class="field">
     <%= f.label :unit %><br />
-    <%= f.text_field :unit, autofocus: true %>
+    <%= f.select :unit, User.units.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
     </div>
 
   <div class="actions">
