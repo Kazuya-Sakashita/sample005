@@ -1,5 +1,4 @@
 class Admins::ManagementsController < ApplicationController
-    def index
-        
-    end
+  def index
+  end
 end

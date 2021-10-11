@@ -5,10 +5,8 @@ class ManagementsController < ApplicationController
   def index
     @management = Management.where(user_id: current_user.id)
   end
+
   def edit
     @management = Management.find(params[:id])
-    
   end
-
-
 end
