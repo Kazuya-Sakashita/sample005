@@ -1,8 +1,29 @@
-<h1>Managements#index</h1>
-<p>Find me in app/views/managements/index.html.erb</p>
-<% if admin_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-    <h4> メールアドレス： <%= current_admin.email %> </h4>
-    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-<% end %>
+<h1>エンジニア稼働管理画面　一覧</h1>
+<%= link_to "マイページ", mypages_path %>
+<hr>
+<table class="">
+<thead>
+<tr>
+  <th>稼働月</th>
+  <th>稼働時間</th>
+  <th>単価</th>
+  <th>単位</th>
+</tr>
+</thead>
+<tbody>
+<% @management.each do |m| %>
+    <tr>
+    <td><%= m.date %></td>
+    <td><%= m.uptime %></td>
+    <td><%= m.unit_cost %></td>
+    <td><%= m.unit %></td>
+    </tr>
 
-<p>エンジニア稼働管理画面　一覧</p>
+<% end %>
+</tbody>
+</table>
+
+<hr>
+<div>
+<%= link_to "Back", :back %>
+</div>

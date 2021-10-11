@@ -1,0 +1,50 @@
+<h1><p>基本情報編集 </h1>
+<%= link_to "マイページ", mypages_path %>
+
+<h2>Edit </h2>
+<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+    <!--アカウント編集時に名前を入力できるようにフォームを追加-->
+    <div class="field">
+      <%= f.label :name %><br />
+      <%= f.text_field :name, autofocus: true %>
+    </div>  
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>  
+    <!--アカウント編集時にプロフィールを入力できるようにフォームを追加-->
+    <div class="field">
+      <%= f.label :phone_number %><br />
+      <%= f.text_field :phone_number, autofocus: true %>
+    </div>
+    <div class="field">
+    <%= f.label :skills %><br />
+    <%= f.text_field :skills, autofocus: true %>
+    </div>
+    <div class="field">
+    <%= f.label :skill_level %><br />
+    <%= f.text_field :skill_level, autofocus: true %>
+    </div>
+    <div class="field">
+    <%= f.label :github_url %><br />
+    <%= f.text_field :github_url, autofocus: true %>
+    </div>
+    <div class="field">
+    <%= f.label :account_info %><br />
+    <%= f.text_field :account_info, autofocus: true %>
+    </div>
+    <div class="field">
+    <%= f.label :unit_price %><br />
+    <%= f.text_area :unit_price, autofocus: true %>
+    </div>
+    <div class="field">
+    <%= f.label :unit %><br />
+    <%= f.text_area :unit, autofocus: true %>
+    </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>
+
+<%= link_to "Back", :back %>

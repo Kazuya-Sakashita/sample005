@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'homes#index'
+
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     passwords: 'users/passwords',
@@ -12,9 +13,12 @@ Rails.application.routes.draw do
     passwords: 'admins/passwords',
     registrations: 'admins/registrations'
   }
+  namespace :admins do
+    resources :managements, only:[:index, :edit, :update]
+  end
 
   resources :mypages
   resources :managements
-
+  resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
