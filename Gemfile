@@ -23,13 +23,13 @@ gem 'jbuilder', '~> 2.7'
 # gem 'bcrypt', '~> 3.1.7'
 
 
-gem 'devise'
-gem 'omniauth-github'
-gem "omniauth-rails_csrf_protection"
-gem 'omniauth', '~> 2.0.4'
-gem 'dotenv-rails'
-gem 'devise-i18n'
-gem 'pry-rails'
+gem 'devise', '~> 4.8'
+gem 'omniauth-github', '~> 2.0'
+gem 'omniauth', '>= 2.0.4'
+gem 'dotenv-rails', '>= 2.7.6'
+gem 'devise-i18n', '~> 1.10'
+gem 'pry-rails', '~> 0.3.9'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
