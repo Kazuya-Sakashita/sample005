@@ -1,6 +1,25 @@
 <h1><p>稼働状況編集 </h1>
 <%= link_to "マイページ", mypages_path %>
 
-<h2>Edit </h2>
+<%= form_with model: @management, url: management_path, id: 'management', class: 'management', local: true do |f| %>
+    <div class="field">
+    <%= f.label :date %><br />
+    <%= f.text_field :date, autofocus: true %>
+    </div>
+
+    <div class="field">
+    <%= f.label :uptime %><br />
+    <%= f.text_field :uptime, autofocus: true %>
+    </div>
+
+    <div class="field">
+    <%= f.label :unit %><br />
+    <%= f.select :unit, User.units.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
+    </div>
+
+    <div class="actions">
+    <%= f.submit "更新", data: { confirm: '上記の内容で投稿を更新します。よろしいですか？' }  %>
+  </div>
+<% end %>
 
 <%= link_to "Back", :back %>

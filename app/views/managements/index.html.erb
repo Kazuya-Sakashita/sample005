@@ -1,5 +1,7 @@
 <h1>エンジニア稼働管理画面　一覧</h1>
 <%= link_to "マイページ", mypages_path %>
+<%= link_to "稼働登録", new_management_path %>
+
 <hr>
 <table class="">
 <thead>
@@ -17,6 +19,7 @@
     <td><%= m.uptime %></td>
     <td><%= m.unit_cost %></td>
     <td><%= m.unit %></td>
+    <td><%= link_to "稼働修正", edit_management_path(m.id)%></td>
     </tr>
 
 <% end %>
