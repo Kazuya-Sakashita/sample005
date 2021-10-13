@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     registrations: 'admins/registrations'
   }
   namespace :admins do
-    resources :managements, only:[:index, :edit, :update]
+    resource :managements
   end
 
   resource :mypages
