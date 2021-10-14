@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
 
   resource :mypages
-  resource :managements
+  resources :managements
   resources :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
