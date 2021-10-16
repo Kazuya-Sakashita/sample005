@@ -1,1 +1,40 @@
 <h1>案件管理画面　一覧</h1>
+<% if admin_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+    <h4> メールアドレス： <%= current_admin.email %> </h4>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+<% end %>
+
+<hr>
+<%= link_to "依頼案件一覧・登録", projects_path %><br>
+
+<%= link_to "管理者トップ画面", admins_managements_path %><br>
+<%= link_to "新規登録", new_project_path %>
+<table>
+    <tbody>
+        <tr>
+                <td>依頼会社</td>
+                <td>案件名</td>
+                <td>案件内容</td>
+                <td>必要スキル</td>
+                <td>スキルレベル</td>
+                <td>予算</td>
+        </tr>
+        <% @projects.each do |project| %>
+            <tr>
+                <td><%= project.client.company_name %></td>
+                <td><%= project.project_name %></td>
+                <td><%= project.project_content %></td>
+                <td><%= project.skills %></td>
+                <td><%= project.skill_level %></td>
+                <td><%= project.budget %></td>
+                <td><%= link_to "変更", edit_project_path(project.id)%></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+
+<hr>
+<div>
+<%= link_to "Back", :back %>
+</div>

@@ -1,0 +1,36 @@
+
+
+<h2>Edit </h2>
+<%= form_with model: @project, url: projects_path, id: 'new_roject', class: 'new_roject', local: true do |f| %>
+
+    <div class="field">
+    <%= f.label :client_id, "依頼会社を選択してください" %><br>
+    <%= f.collection_select :client_id, Client.all, :id, :company_name, :prompt => "依頼会社選択" %>
+    </div>  
+
+    <div class="field">
+      <%= f.label :project_name %><br />
+      <%= f.text_field :project_name, autofocus: true %>
+    </div>  
+
+    <div class="field">
+      <%= f.label :project_content %><br />
+      <%= f.text_area :project_content, autofocus: true %>
+    </div>  
+    
+    <div class="field">
+    <%= f.label :skills %><br />
+    <%= f.text_field :skills, autofocus: true %>
+    </div>
+    <div class="field">
+    <%= f.label :skill_level %><br />
+    <%= f.select :skill_level, Project.skill_levels.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
+
+    </div>
+
+    <div class="actions">
+    <%= f.submit "登録", data: { confirm: '上記の内容で投稿を更新します。よろしいですか？' } %>
+  </div>
+<% end %>
+
+<%= link_to "Back", :back %>
