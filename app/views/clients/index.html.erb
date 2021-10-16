@@ -1,0 +1,35 @@
+<h1>取引会社情報登録</h1>
+
+<% if admin_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+    <h4> メールアドレス： <%= current_admin.email %> </h4>
+    <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+<% end %>
+<hr>
+<%= link_to "管理者トップ画面", admins_managements_path %><br>
+<%= link_to "新規登録", new_client_path %>
+<table>
+    <tbody>
+        <tr>
+            <th>取引先一覧</th>
+                <td>取引先会社</td>
+                <td>担当者</td>
+                <td>メールアドレス</td>
+                <td>電話番号</td>
+            </tr>
+        <% @clients.each do |client| %>
+            <tr>
+                <td><%= client.company_name %></td>
+                <td><%= client.staff %></td>
+                <td><%= client.email %></td>
+                <td><%= client.phone %></td>
+                <td><%= link_to "変更", edit_client_path(client.id)%></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+
+<hr>
+<div>
+<%= link_to "Back", :back %>
+</div>
