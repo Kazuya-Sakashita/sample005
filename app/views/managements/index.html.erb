@@ -4,15 +4,16 @@
 
 <hr>
 <table class="">
-<thead>
-<tr>
-  <th>稼働月</th>
-  <th>稼働時間</th>
-  <th>単価</th>
-  <th>単位</th>
-</tr>
-</thead>
 <tbody>
+
+<tr>
+  <td>稼働月</td>
+  <td>稼働時間</td>
+  <td>単価</td>
+  <td>単位</td>
+  <td>アクション</tg>
+</tr>
+
 <% @management.each do |m| %>
     <tr>
     <td><%= m.date %></td>
