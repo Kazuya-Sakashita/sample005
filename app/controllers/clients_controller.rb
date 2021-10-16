@@ -10,12 +10,12 @@ class ClientsController < ApplicationController
   def create
     @client = Client.new(client_params)
     if @client.save
-        flash[:notice] = '投稿しました！'
-        redirect_to clients_path
-      else
-        flash.now[:alert] = '入力内容が正しくありません'
-        render :index
-      end
+      flash[:notice] = '投稿しました！'
+      redirect_to clients_path
+    else
+      flash.now[:alert] = '入力内容が正しくありません'
+      render :index
+    end
   end
 
   def edit
@@ -34,11 +34,9 @@ class ClientsController < ApplicationController
   def destroy
   end
 
-
   private
 
   def client_params
     params.require(:client).permit(:company_name, :staff, :email, :phone)
   end
-
 end
