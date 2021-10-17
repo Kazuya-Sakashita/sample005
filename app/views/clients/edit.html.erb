@@ -1,0 +1,30 @@
+
+
+<h2>Edit </h2>
+<%= form_with model: @client, url: client_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+    <!--アカウント編集時に名前を入力できるようにフォームを追加-->
+    <div class="field">
+      <%= f.label :company_name %><br />
+      <%= f.text_field :company_name, autofocus: true %>
+    </div>  
+    <div class="field">
+      <%= f.label :staff %><br />
+      <%= f.text_field :staff, autofocus: true, autocomplete: "staff" %>
+      </div>  
+
+      <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>  
+
+      <div class="field">
+      <%= f.label :phone %><br />
+      <%= f.text_field :phone, autofocus: true, autocomplete: "phone" %>
+      </div>  
+
+  <div class="actions">
+    <%= f.submit "更新", data: { confirm: '上記の内容で投稿を更新します。よろしいですか？' } %>
+  </div>
+<% end %>
+
+<%= link_to "Back", :back %>
