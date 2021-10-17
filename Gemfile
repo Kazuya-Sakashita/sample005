@@ -28,7 +28,6 @@ gem 'omniauth-github', '~> 2.0'
 gem 'omniauth', '>= 2.0.4'
 gem 'dotenv-rails', '>= 2.7.6'
 gem 'devise-i18n', '~> 1.10'
-gem 'pry-rails', '~> 0.3.9'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -40,6 +39,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop', '>= 1.22.1', require: false
+  gem 'pry-byebug'
 end
 
 group :development do
