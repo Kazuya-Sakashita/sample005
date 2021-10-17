@@ -1,12 +1,17 @@
 class MypagesController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
   # ログイン済ユーザーのみにアクセスを許可する
 
   def show
-    @user = User.where(id: current_user.id)
   end
 
   def edit
+  end
+
+  private
+
+  def set_user
     @user = current_user
   end
 end
