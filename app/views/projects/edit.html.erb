@@ -25,7 +25,12 @@
     <div class="field">
     <%= f.label :skill_level %><br />
     <%= f.select :skill_level, Project.skill_levels.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
-
+    </div>
+    
+    </div>
+    <div class="field">
+    <%= f.label :budget %><br />
+    <%= f.text_field :budget, autofocus: true %>
     </div>
 
     <div class="actions">
