@@ -1,6 +1,7 @@
 class ManagementsController < ApplicationController
   before_action :authenticate_user!
   # ログイン済ユーザーのみにアクセスを許可する
+  before_action :set_management, only: %w[edit update]
 
   def index
     @management = Management.where(user_id: current_user.id)
@@ -23,11 +24,9 @@ class ManagementsController < ApplicationController
   end
 
   def edit
-    @management = Management.find(params[:id])
   end
 
   def update
-    @management = Management.find(params[:id])
     @management.update(management_params)
     redirect_to managements_path
   end
@@ -36,5 +35,9 @@ class ManagementsController < ApplicationController
 
   def management_params
     params.require(:management).permit(:uptime, :unit, :date, :date)
+  end
+
+  def set_management
+    @management = Management.find(params[:id])
   end
 end

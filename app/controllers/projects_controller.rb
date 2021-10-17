@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+  before_action :set_project, only: %w[edit update]
+
   def index
     @projects = Project.all
   end
@@ -19,14 +21,12 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
   end
 
   def show
   end
 
   def update
-    @project = Project.find(params[:id])
     @project.update(project_params)
     redirect_to projects_path
   end
@@ -41,5 +41,9 @@ class ProjectsController < ApplicationController
           .permit(:client_id, :project_name,
                   :project_content, :skills,
                   :skill_level, :budget)
+  end
+
+  def set_project
+    @project = Project.find(params[:id])
   end
 end
