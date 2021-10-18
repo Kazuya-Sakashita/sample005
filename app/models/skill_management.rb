@@ -1,0 +1,3 @@
+class SkillManagement < ApplicationRecord
+
+end

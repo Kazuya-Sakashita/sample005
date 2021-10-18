@@ -1,0 +1,31 @@
+<h2>スキル一括登録 </h2>
+<%= form_with model: @form, url: skill_managements_path, method: :post, id: 'new_skill_management', class: 'new_skill_management', local: true do |form| %>
+    <table class="table">
+    <thead>
+     <tr>
+        <th> 登録
+        <th> スキル
+        <th> スキルレベル
+     </tr>
+    </thead>
+  <tbody>
+    <%= form.fields_for :skill_managements do |f| %>
+      <tr>
+        <td class= "text-center">
+        <%= f.check_box :availability %>
+        </td>
+        <td>
+        <%= f.text_field :skill_id %>
+        </td>
+        <td>
+        <%= f.text_field :skill_level %>
+        </td>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+    <% end %>
+    </table>
+
+    <%= form.submit "一括登録" %>
+    <%= link_to "戻る", :back  %>  
+
+<% end %>
+
