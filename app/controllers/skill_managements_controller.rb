@@ -1,5 +1,6 @@
 class SkillManagementsController < ApplicationController
   def show
+    @skill_management = SkillManagement.where(user_id: current_user.id)
   end
 
   def edit
