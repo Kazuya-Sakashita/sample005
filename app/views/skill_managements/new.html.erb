@@ -15,10 +15,10 @@
         <%= f.check_box :availability %>
         </td>
         <td>
-        <%= f.text_field :skill_id %>
+        <%= f.collection_select :skill_id, Skill.all, :id, :skill, :prompt => "スキルを選択してください" %><br>
         </td>
         <td>
-        <%= f.text_field :skill_level %>
+        <%= f.select :skill_level, Skill.skill_levels.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
         </td>
         <%= f.hidden_field :user_id, :value => current_user.id %>
     <% end %>
