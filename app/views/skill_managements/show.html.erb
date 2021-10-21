@@ -1,12 +1,24 @@
 <h1>SkillManagements#show</h1>
-<p>Find me in app/views/skill_managements/show.html.erb</p>
+<%= link_to "マイページ", mypages_path %>
+<hr>
 
 
 <%= link_to "新規登録", new_skill_managements_path %><br>
 
-<div>
+<table class="">
+<tbody>
+<tr>
+  <td>スキル</td>
+  <td>スキルレベル</td>
+
+</tr>
+
+
 <% @skill_management.each do |s| %>
-    <%= s.skill.skill %>/
-    <%= s.skill_level %><br>
+    <tr>
+    <td><%= s.skill.skill %></td>
+    <td><%= s.skill_level %></td>
+    </tr>
 <% end %>
-</div>
+</tbody>
+</table>
