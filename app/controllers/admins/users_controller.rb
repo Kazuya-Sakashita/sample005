@@ -1,14 +1,11 @@
 class Admins::UsersController < ApplicationController
-    def index
+  def index
+    @users = User.all
+  end
 
-    end
+  def editi
+  end
 
-    def editi
-
-    end
-
-    def update
-
-    end
-
+  def update
+  end
 end

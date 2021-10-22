@@ -6,7 +6,6 @@ class SkillManagementsController < ApplicationController
 
   def edit
     @skill_managements = SkillManagement.find(id: params[:id])
-
   end
 
   def new
