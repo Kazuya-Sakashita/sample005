@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   }
   namespace :admins do
     resource :managements
+    resources :users
   end
 
   resource :mypages
