@@ -17,15 +17,7 @@
       <%= f.label :phone_number %><br />
       <%= f.text_field :phone_number, autofocus: true %>
     </div>
-    <div class="field">
-    <%= f.label :skills %><br />
-    <%= f.text_field :skills, autofocus: true %>
-    </div>
-    <div class="field">
-    <%= f.label :skill_level %><br />
-    <%= f.select :skill_level, User.skill_levels.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
 
-    </div>
     <div class="field">
     <%= f.label :github_url %><br />
     <%= f.text_field :github_url, autofocus: true %>

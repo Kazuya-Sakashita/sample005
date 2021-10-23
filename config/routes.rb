@@ -19,9 +19,11 @@ Rails.application.routes.draw do
     resource :managements
     resources :users
   end
-
+  resource :skill_managements do
+    resources :skill
+  end
   resource :mypages
-  resource :skill_managements
+
   resources :managements
   resources :users
   resources :clients

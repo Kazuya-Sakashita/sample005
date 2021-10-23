@@ -16,12 +16,12 @@
         <li>メールアドレス: <%= @user.email %></li>
         <li>氏名:          <%= @user.name %></li>
         <li>電話番号:       <%= @user.phone_number %></li>
-        <li>スキル:         <% @user.skills.each do |s| %>
-            <%= s.skill %>
-            <%= s.skill_level %>
-            <% end %>
+        <li><% @user.skill_managements.each do |skill| %>
+           <%= skill.skill.skill %> /
+                <%= skill.skill_level %>　　
+          <% end %></li>
+
             </li>
-        <li>スキルレベル:    <%= @user.skill_level %></li>
         <li>Githubアカウント: <%= @user.github_url %></li>
         <li>口座情報:       <%= @user.account_info %></li>
         <li>単価:          <%= @user.unit_price %></li>
