@@ -1,0 +1,31 @@
+<h1><p>MyPage </h1>
+
+<% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+    <h4> メールアドレス： <%= current_user.email %> </h4>
+    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% end %>
+
+<br>
+
+<li><%= link_to "基本情報", edit_mypages_path %></li>
+<li><%= link_to "基本情報SKILL", skill_managements_path %></li>
+<li><%= link_to "稼働管理", managements_path %></li>
+<hr>
+<div>
+    <h2>登録情報</h2>
+        <li>メールアドレス: <%= @user.email %></li>
+        <li>氏名:          <%= @user.name %></li>
+        <li>電話番号:       <%= @user.phone_number %></li>
+        <li><% @user.skill_managements.each do |skill| %>
+           <%= skill.skill.skill %> /
+                <%= skill.skill_level %>　　
+          <% end %></li>
+
+            </li>
+        <li>Githubアカウント: <%= @user.github_url %></li>
+        <li>口座情報:       <%= @user.account_info %></li>
+        <li>単価:          <%= @user.unit_price %></li>
+        <li>単価単位:       <%= @user.unit %></li>
+
+
+</div>
