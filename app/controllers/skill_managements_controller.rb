@@ -1,11 +1,15 @@
 class SkillManagementsController < ApplicationController
-  before_action :set_personal_skill, only: %w[edit show]
+  before_action :set_personal_skill, only: %w[edit show index update]
 
   def show
   end
 
+  def inde
+
+  end
+
   def edit
-    @skill_managements = SkillManagement.find(id: params[:id])
+    @skill_managements = SkillManagement.find(params[:id])
   end
 
   def new
@@ -22,8 +26,11 @@ class SkillManagementsController < ApplicationController
     end
   end
 
+  
   def update
-    @skill_managements.update(skill_management_collection_params)
+    @skill_managements = SkillManagement.find(params[:id])
+    @skill_managements.update(skill_management_params)
+    redirect_to skill_managements_path
   end
 
   private
@@ -31,6 +38,11 @@ class SkillManagementsController < ApplicationController
   def skill_management_collection_params
     params.require(:form_skill_management_collection)
           .permit(skill_managements_attributes: [:user_id, :skill_id, :skill_level, :availability])
+  end
+
+  def skill_management_params
+    params.require(:skill_management)
+          .permit(:user_id, :skill_id, :skill_level, :availability)
   end
 
   def set_personal_skill

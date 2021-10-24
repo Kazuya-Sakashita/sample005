@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'skill_managements/show'
-  get 'skill_managements/edit'
   root 'homes#index'
 
   devise_for :users, controllers: {
@@ -19,7 +17,7 @@ Rails.application.routes.draw do
     resource :managements
     resources :users
   end
-  resource :skill_managements do
+  resources :skill_managements do
     resources :skill
   end
   resource :mypages
