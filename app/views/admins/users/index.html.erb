@@ -21,10 +21,10 @@
         <td><%= user.email %></td>
         <td><%= user.unit_price %></td>
         <td><%= user.unit %></td>
-          <% user.skill_managements.each do |skill| %>
-            <td><%= skill.skill.skill %>/
-              <%= skill.skill_level %></td>
-          <% end %>
+        <td><% user.skill_managements.each do |skill| %>
+            <%= skill.skill.skill %>/
+              <%= skill.skill_level %>
+          <% end %></td>
         </tr>
     <% end %>
   </tbody>
