@@ -4,7 +4,7 @@ class SkillManagementsController < ApplicationController
   def show
   end
 
-  def inde
+  def index
 
   end
 
@@ -24,6 +24,15 @@ class SkillManagementsController < ApplicationController
       flash.now[:alert] = 'skill登録に失敗しました'
       render :new
     end
+  end
+
+  def destroy
+    skill_management = SkillManagement.find(params[:id])
+    if skill_management.user_id == current_user.id
+      skill_management.destroy #destroyメソッドを使用し対象のツイートを削除する。
+      redirect_to skill_managements_path
+    end
+
   end
 
   
