@@ -8,10 +8,9 @@
     <tr>
       <td>名前</td>
       <td>メールアドレス</td>
-      <td>スキルレベル</td>
       <td>単価</td>
       <td>単価単位</td>
-      <td>スキル</td>
+      <td>スキル/スキルレベル</td>
 
     </tr>
 
@@ -23,10 +22,9 @@
         <td><%= user.unit_price %></td>
         <td><%= user.unit %></td>
           <% user.skill_managements.each do |skill| %>
-            <td><%= skill.skill.skill %>
-            <td><%= skill.skill_level %></td>
+            <td><%= skill.skill.skill %>/
+              <%= skill.skill_level %></td>
           <% end %>
-
         </tr>
     <% end %>
   </tbody>
