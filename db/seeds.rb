@@ -5,3 +5,24 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+#スキル項目データ入力
+# Skill.create!(
+#     [
+#       {skill: 'HTML/CSS'},
+#       {skill: 'JavaScript'},
+#       {skill: 'Vue.js'},
+#       {skill: 'PHP'},
+#       {skill: 'Laravel'},
+#       {skill: 'Java'},
+#       {skill: 'Python'},
+#       {skill: 'Ruby'},
+#       {skill: 'C++'},
+#       {skill: 'Swift'},
+#       {skill: 'WordPress'},
+#       {skill: 'Photoshop'},
+#       {skill: 'Illustrator'},
+#     ]
+#   )

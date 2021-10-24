@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_16_225537) do
+ActiveRecord::Schema.define(version: 2021_10_17_220559) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 2021_10_16_225537) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
   create_table "managements", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "project", default: 0, null: false
@@ -42,6 +53,8 @@ ActiveRecord::Schema.define(version: 2021_10_16_225537) do
     t.string "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "slug"
+    t.index ["slug"], name: "index_managements_on_slug", unique: true
     t.index ["user_id"], name: "index_managements_on_user_id"
   end
 
@@ -55,6 +68,22 @@ ActiveRecord::Schema.define(version: 2021_10_16_225537) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["client_id"], name: "index_projects_on_client_id"
+  end
+
+  create_table "skill_managements", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "skill_id", null: false
+    t.integer "skill_level", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "availability"
+    t.index ["user_id"], name: "index_skill_managements_on_user_id"
+  end
+
+  create_table "skills", force: :cascade do |t|
+    t.string "skill"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -82,4 +111,5 @@ ActiveRecord::Schema.define(version: 2021_10_16_225537) do
 
   add_foreign_key "managements", "users"
   add_foreign_key "projects", "clients"
+  add_foreign_key "skill_managements", "users"
 end

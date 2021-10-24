@@ -1,0 +1,28 @@
+<h1>SkillManagements#show</h1>
+<%= link_to "マイページ", mypages_path %>
+<hr>
+
+
+<%= link_to "新規登録", new_skill_managements_path %><br>
+
+
+
+<table class="">
+<tbody>
+<tr>
+  <td>スキル</td>
+  <td>スキルレベル</td>
+  <td></td>
+</tr>
+
+
+<% @personal_skill.each do |s| %>
+    <tr>
+    <td><%= s.skill.skill %></td>
+    <td><%= s.skill_level %></td>
+    <td> <%= link_to "編集", edit_skill_managements_path(id: s.id) %></td>
+
+    </tr>
+<% end %>
+</tbody>
+</table>
