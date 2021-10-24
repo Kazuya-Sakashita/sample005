@@ -20,6 +20,7 @@
     <td><%= s.skill.skill %></td>
     <td><%= s.skill_level %></td>
     <td> <%= link_to "編集", edit_skill_management_path(id: s.id) %></td>
+    <td> <%= link_to "削除", skill_management_path(id: s.id), method: :delete , data: {confirm: "削除しますか？"}%></td>
     </tr>
 <% end %>
 </tbody>
