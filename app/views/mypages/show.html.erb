@@ -13,19 +13,40 @@
 <hr>
 <div>
     <h2>登録情報</h2>
-        <li>メールアドレス: <%= @user.email %></li>
-        <li>氏名:          <%= @user.name %></li>
-        <li>電話番号:       <%= @user.phone_number %></li>
-        <li><% @user.skill_managements.each do |skill| %>
-           <%= skill.skill.skill %> /
-                <%= skill.skill_level %>　　
-          <% end %></li>
+    <div class="profile-view">
+    <table>
+    <tbody>
+        <tr>
+        <th>メールアドレス:</th> <td> <%= @user.email %></td>
+        </tr>
+        <tr>
+        <th>氏名:</th>          <td><%= @user.name %></td>
+        </tr>        <tr>
+        <th>電話番号:</th>       <td><%= @user.phone_number %></td>
+        </tr>        <tr>
+        <th>スキル:</th> 
+            <td> <% @user.skill_managements.each do |skill| %>
+                <%= skill.skill.skill %> /
+                     <%= skill.skill_level %>　　
+               <% end %></td>
+        </tr>        
+        
+        <tr>
+        <th>Githubアカウント:</th> <td><%= @user.github_url %></td>
+        </tr>        <tr>
+        <th>口座情報:</th>       <td><%= @user.account_info %></td>
+        </tr>
+        </tr>        
+        <tr>
+        <th>単価:</th>          <td><%= @user.unit_price %></td>
+        </tr>
+        </tr>        
+        <tr>
+        <th>単価単位:</th>       <td><%= @user.unit %></td>
+        </tr>     
 
-            </li>
-        <li>Githubアカウント: <%= @user.github_url %></li>
-        <li>口座情報:       <%= @user.account_info %></li>
-        <li>単価:          <%= @user.unit_price %></li>
-        <li>単価単位:       <%= @user.unit %></li>
+        </table>
+        </tbody>
 
+    </div>
 
-</div>
