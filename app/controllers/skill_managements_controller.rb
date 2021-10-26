@@ -1,15 +1,14 @@
 class SkillManagementsController < ApplicationController
-  before_action :set_personal_skill, only: %w[edit show index update]
+  before_action :set_personal_skill, only: [:edit, :update, :show, :index]
+  before_action :set_skill_management, only: [:edit, :update]
 
   def show
   end
 
   def index
-
   end
 
   def edit
-    @skill_managements = SkillManagement.find(params[:id])
   end
 
   def new
@@ -28,17 +27,13 @@ class SkillManagementsController < ApplicationController
 
   def destroy
     skill_management = SkillManagement.find(params[:id])
-    if skill_management.user_id == current_user.id
-      skill_management.destroy #destroyメソッドを使用し対象のツイートを削除する。
+    return unless skill_management.user_id == current_user.id
+      skill_management.destroy # destroyメソッドを使用し対象のツイートを削除する。
       redirect_to skill_managements_path
-    end
-
   end
 
-  
   def update
-    @skill_managements = SkillManagement.find(params[:id])
-    @skill_managements.update(skill_management_params)
+    @skill_management.update(skill_management_params)
     redirect_to skill_managements_path
   end
 
@@ -57,4 +52,13 @@ class SkillManagementsController < ApplicationController
   def set_personal_skill
     @personal_skill = SkillManagement.where(user_id: current_user.id)
   end
+
+  def set_skill_management
+    @skill_management = SkillManagement.find(params[:id])
+    @user = @skill_management.user_id
+    return unless current_user.id != @user # 稼働管理投稿者のuser_idとログイン者を比較
+
+    redirect_to  skill_managements_path       # 一覧ページにリダイレクトさせる
+  end
+
 end
