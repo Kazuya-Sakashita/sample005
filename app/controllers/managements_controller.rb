@@ -24,7 +24,6 @@ class ManagementsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -41,9 +40,8 @@ class ManagementsController < ApplicationController
   def set_management
     @management = Management.find(params[:id])
     @user = @management.user_id
-    if current_user.id != @user     # 現在ログインしているユーザー（編集者）と@user（投稿者）が異なったら
-      redirect_to managements_path       # 一覧ページにリダイレクトさせる
-    end
+    return unless current_user.id != @user # 稼働管理投稿者のuser_idとログイン者を比較
 
+    redirect_to managements_path       # 一覧ページにリダイレクトさせる
   end
 end
