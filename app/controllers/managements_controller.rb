@@ -1,7 +1,7 @@
 class ManagementsController < ApplicationController
   before_action :authenticate_user!
   # ログイン済ユーザーのみにアクセスを許可する
-  before_action :set_management, only: %w[edit update]
+  before_action :set_management, only: [:edit, :update]
 
   def index
     @management = Management.where(user_id: current_user.id)
@@ -24,6 +24,7 @@ class ManagementsController < ApplicationController
   end
 
   def edit
+
   end
 
   def update
@@ -39,5 +40,10 @@ class ManagementsController < ApplicationController
 
   def set_management
     @management = Management.find(params[:id])
+    @user = @management.user_id
+    if current_user.id != @user     # 現在ログインしているユーザー（編集者）と@user（投稿者）が異なったら
+      redirect_to managements_path       # 一覧ページにリダイレクトさせる
+    end
+
   end
 end
