@@ -32,7 +32,7 @@
         </tr>        
         
         <tr>
-        <th>Githubアカウント:</th> <td><%= @user.github_url %></td>
+        <th>Githubアカウント:</th> <td><%=link_to @user.github_url , @user.github_url, target: :_blank %></td>
         </tr>        <tr>
         <th>口座情報:</th>       <td><%= @user.account_info %></td>
         </tr>

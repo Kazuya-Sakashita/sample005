@@ -22,7 +22,8 @@
           <% end %></li>
 
             </li>
-        <li>Githubアカウント: <%= @user.github_url %></li>
+        <li>Githubアカウント: <%=link_to @user.github_url , @user.github_url %></li>
+        
         <li>口座情報:       <%= @user.account_info %></li>
         <li>単価:          <%= @user.unit_price %></li>
         <li>単価単位:       <%= @user.unit %></li>
