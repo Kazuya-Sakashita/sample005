@@ -9,7 +9,7 @@
 
 
 #スキル項目データ入力
-# Skill.create!(
+Skill.create!(
 #     [
 #       {skill: 'HTML/CSS'},
 #       {skill: 'JavaScript'},
