@@ -17,6 +17,9 @@ class User < ApplicationRecord
     user
   end
 
+  
+
+  # roleを設定
   enum role: { general: 0, admin: 1 }
   enum skill_level: { Junior: 0, Middle: 1, Senior: 2 }
   enum unit: { hours: 0, days: 1 }

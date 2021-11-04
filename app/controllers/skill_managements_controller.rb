@@ -33,6 +33,7 @@ class SkillManagementsController < ApplicationController
   end
 
   def update
+    authorize @skill_management
     @skill_management.update(skill_management_params)
     redirect_to skill_managements_path
   end
