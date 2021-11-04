@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :skill
   end
   resource :mypages
-  resource :users
+  resources :users
   resources :managements
   resources :clients
   resources :projects

@@ -1,6 +1,35 @@
 <h1>My page</h1>
+<% if current_user.present? %>
+    <p>現在ログインしているユーザー:<%= current_user.email %></p>
+    <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to 'ログイン', new_user_session_path %>
+  <% end %>
 <p><%= @user.email %></p>
-<h1>My Role</h1>
 <p><%= @user.role %></p>
+
+
+<div>
+    <h2>登録情報</h2>
+    <table>
+    <tbody>
+        <tr>
+        <th>メールアドレス:</th> <td> <%= @user.email %></td>
+        </tr>
+        <tr>
+        <th>氏名:</th>          <td><%= @user.name %></td>
+        </tr>        <tr>
+        <th>電話番号:</th>       <td><%= @user.phone_number %></td>
+        </tr>        <tr>
+        <th>単価:</th>       <td><%= @user.unit_price %></td>
+        </tr>     <tr>
+        <th>単位:</th>       <td><%= @user.unit %></td>
+        </tr>       
+
+        </table>
+        </tbody>
+
+
+</div>
 
 <%= link_to 'Back', users_path %>
