@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :skill_managements
   has_many :skills, through: :skill_managements
+  has_one :wage
   # has_many :skills, through: :skill_management
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable

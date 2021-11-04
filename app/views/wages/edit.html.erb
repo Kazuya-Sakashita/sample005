@@ -1,0 +1,22 @@
+
+
+  <%= form_with model: @wage, url:  wage_path, id: 'new_management', class: 'new_management', local: true do |f| %>
+    <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.text_field :user_id, autofocus: true %>
+    </div>
+
+    <div class="field">
+    <%= f.label :unit_price %><br />
+    <%= f.text_field :unit_price, autofocus: true %>
+    </div>
+
+    <div class="field">
+    <%= f.label :unit %><br />
+    <%= f.text_field :unit, autofocus: true %>
+    </div>
+    
+    <div class="actions">
+    <%= f.submit "登録" %>
+  </div>
+<% end %>

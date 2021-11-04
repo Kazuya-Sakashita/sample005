@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_220559) do
+ActiveRecord::Schema.define(version: 2021_11_04_224743) do
 
   create_table "clients", force: :cascade do |t|
     t.string "company_name"
@@ -83,7 +83,17 @@ ActiveRecord::Schema.define(version: 2021_10_17_220559) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "wages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "unit_price", default: 0, null: false
+    t.integer "unit", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_wages_on_user_id"
+  end
+
   add_foreign_key "managements", "users"
   add_foreign_key "projects", "clients"
   add_foreign_key "skill_managements", "users"
+  add_foreign_key "wages", "users"
 end
