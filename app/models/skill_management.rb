@@ -4,8 +4,8 @@ class SkillManagement < ApplicationRecord
 
   enum skill_level: { Junior: 0, Middle: 1, Senior: 2 }
 
-    validates :user_id, presence: true
-    validates :skill_id, presence: true
-    validates :skill_level, presence: true
-    validates :availability, inclusion: { in: [true, false] }, presence: true
+  validates :user_id, presence: true
+  validates :skill_id, presence: true
+  validates :skill_level, presence: true
+  validates :availability, inclusion: { in: [true, false] }, presence: true
 end
