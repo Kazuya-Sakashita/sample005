@@ -6,6 +6,13 @@
 <% else %>
   <%= link_to 'Sign_in', new_user_session_path %>
 <% end %>
+<div>
+<%= link_to 'エンジニア一覧', wages_path %>
+</div>
+<div>
+<%= link_to "報酬条件管理", wages_path %><br>
+</div>
+
 
 <ul class="users">
   <% @users.each do |user| %>
