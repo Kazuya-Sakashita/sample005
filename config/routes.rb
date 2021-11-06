@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :skill_managements do
     resources :skill
   end
-  resource :mypages
+  resources :mypages
   resources :users
   resources :managements
   resources :clients

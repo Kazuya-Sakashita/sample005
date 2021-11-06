@@ -7,7 +7,7 @@
 
 <br>
 
-<li><%= link_to "基本情報", edit_mypages_path %></li>
+<li><%= link_to "基本情報", edit_mypage_path(current_user.id) %></li>
 <li><%= link_to "基本情報SKILL", skill_managements_path %></li>
 <li><%= link_to "稼働管理", managements_path %></li>
 <hr>
@@ -30,20 +30,11 @@
                      <%= skill.skill_level %>　　
                <% end %></td>
         </tr>        
-        
         <tr>
         <th>Githubアカウント:</th> <td><%=link_to @user.github_url , @user.github_url, target: :_blank %></td>
         </tr>        <tr>
         <th>口座情報:</th>       <td><%= @user.account_info %></td>
         </tr>
-        </tr>        
-        <tr>
-        <th>単価:</th>          <td><%= @user.wage.unit_price %></td>
-        </tr>
-        </tr>        
-        <tr>
-        <th>単価単位:</th>       <td><%= @user.wage.unit %></td>
-        </tr>     
 
         </table>
         </tbody>

@@ -1,15 +1,9 @@
 class WagesController < ApplicationController
   def index
-    if @user == current_user.admin?
+    @user == current_user.admin?
       # adminは全ユーザーを表示
       @wages = Wage.all
       @users = User.all
-    else
-      # generalは、自分のを表示
-      redirect_to wage_path(current_user.id)
-      @user = current_user
-      authorize @user
-    end
   end
 
   def edit
@@ -23,6 +17,8 @@ class WagesController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @wage = Wage.find(id: current_user.id)
   end
 
   def destroy

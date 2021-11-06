@@ -4,6 +4,9 @@ class MypagesController < ApplicationController
   # ログイン済ユーザーのみにアクセスを許可する
 
   def show
+    @user = current_user
+    @wage = Wage.find_by(id: current_user.id)
+    #find_byで存在しない場合、エラーでなくnilを返す
   end
 
   def edit

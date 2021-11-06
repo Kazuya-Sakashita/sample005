@@ -25,9 +25,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_224743) do
     t.integer "user_id", null: false
     t.integer "project", default: 0, null: false
     t.integer "uptime"
-    t.integer "unit_cost"
-    t.integer "unit"
-    t.string "date"
+    t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_managements_on_user_id"
@@ -75,8 +73,6 @@ ActiveRecord::Schema.define(version: 2021_11_04_224743) do
     t.string "phone_number"
     t.string "github_url"
     t.string "account_info"
-    t.integer "unit_price"
-    t.integer "unit"
     t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
