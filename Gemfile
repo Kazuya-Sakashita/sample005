@@ -29,6 +29,7 @@ gem 'omniauth', '>= 2.0.4'
 gem 'dotenv-rails', '>= 2.7.6'
 gem 'devise-i18n', '~> 1.10'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
+gem 'pundit', '~> 1.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -40,6 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rubocop', '>= 1.22.1', require: false
   gem 'pry-byebug'
+  gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
 end
 
 group :development do

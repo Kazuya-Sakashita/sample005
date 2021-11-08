@@ -28,11 +28,13 @@ class SkillManagementsController < ApplicationController
   def destroy
     skill_management = SkillManagement.find(params[:id])
     return unless skill_management.user_id == current_user.id
-      skill_management.destroy # destroyメソッドを使用し対象のツイートを削除する。
-      redirect_to skill_managements_path
+
+    skill_management.destroy # destroyメソッドを使用し対象のツイートを削除する。
+    redirect_to skill_managements_path
   end
 
   def update
+    authorize @skill_management
     @skill_management.update(skill_management_params)
     redirect_to skill_managements_path
   end
@@ -58,7 +60,6 @@ class SkillManagementsController < ApplicationController
     @user = @skill_management.user_id
     return unless current_user.id != @user # 稼働管理投稿者のuser_idとログイン者を比較
 
-    redirect_to  skill_managements_path       # 一覧ページにリダイレクトさせる
+    redirect_to skill_managements_path       # 一覧ページにリダイレクトさせる
   end
-
 end

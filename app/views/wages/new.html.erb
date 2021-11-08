@@ -1,0 +1,27 @@
+
+
+  <%= form_with model: @wage, url:  wages_path, id: 'new_management', class: 'new_management', local: true do |f| %>
+    <div class="field">
+    <%= f.label :user_id %><br />
+    <%= f.collection_select :user_id, @unregistered_users, :id, :email, :prompt => "名前を選択してください" %><br>
+
+    </div>
+
+    <div class="field">
+    <%= f.label :unit_price %><br />
+    <%= f.text_field :unit_price, autofocus: true %>
+    </div>
+
+    <div class="field">
+    <%= f.label :unit %><br />
+    <%= f.select :unit, Wage.units.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
+    </div>
+    
+    <div class="actions">
+    <%= f.submit "登録" %>
+  </div>
+<% end %>
+
+<div>
+<%= link_to "Back", :back %>
+</div>

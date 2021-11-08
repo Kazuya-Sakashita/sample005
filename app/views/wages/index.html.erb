@@ -1,0 +1,35 @@
+<h1>Wages#index</h1>
+<p>Find me in app/views/wages/index.html.erb</p>
+
+<%= link_to "エンジニア管理", users_path %><br>
+<%= link_to '報酬条件入力', new_wage_path %>
+
+<table class="">
+<tbody>
+<tr>
+  <td>名前</td>
+  <td>メールアドレス</td>
+  <td>単価</td>
+  <td>単位</td>
+  <td>編集内容</td>
+</tr>
+
+
+<% @wages.each do |wage| %>
+    <tr>
+    <td><%= wage.user.name %></td>
+    <td><%= wage.user.email %></td>
+    <td><%= wage.unit_price %></td>
+    <td><%= wage.unit %></td>
+    <td> <%= link_to "編集", edit_wage_path(id: wage.id) %>
+         <%= link_to "削除",  wage_path(id: wage.id), method: :delete , data: {confirm: "削除しますか？"}%></td>
+
+    </tr>
+<% end %>
+</tbody>
+</table>
+
+
+<div>
+<%= link_to "Back", :back %>
+</div>

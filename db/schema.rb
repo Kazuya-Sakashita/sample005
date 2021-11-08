@@ -10,19 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_17_220559) do
-
-  create_table "admins", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["email"], name: "index_admins_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
-  end
+ActiveRecord::Schema.define(version: 2021_11_04_224743) do
 
   create_table "clients", force: :cascade do |t|
     t.string "company_name"
@@ -33,28 +21,14 @@ ActiveRecord::Schema.define(version: 2021_10_17_220559) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string "slug", null: false
-    t.integer "sluggable_id", null: false
-    t.string "sluggable_type", limit: 50
-    t.string "scope"
-    t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
-    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
-  end
-
   create_table "managements", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "project", default: 0, null: false
     t.integer "uptime"
-    t.integer "unit_cost"
     t.integer "unit"
-    t.string "date"
+    t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "slug"
-    t.index ["slug"], name: "index_managements_on_slug", unique: true
     t.index ["user_id"], name: "index_managements_on_user_id"
   end
 
@@ -98,18 +72,25 @@ ActiveRecord::Schema.define(version: 2021_10_17_220559) do
     t.string "provider"
     t.string "name"
     t.string "phone_number"
-    t.string "skills"
-    t.integer "skill_level"
     t.string "github_url"
     t.string "account_info"
-    t.integer "unit_price"
-    t.integer "unit"
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  create_table "wages", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "unit_price", default: 0, null: false
+    t.integer "unit", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_wages_on_user_id"
+  end
+
   add_foreign_key "managements", "users"
   add_foreign_key "projects", "clients"
   add_foreign_key "skill_managements", "users"
+  add_foreign_key "wages", "users"
 end

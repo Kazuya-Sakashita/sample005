@@ -4,37 +4,42 @@ class ManagementsController < ApplicationController
   before_action :set_management, only: [:edit, :update]
 
   def index
-    @management = Management.where(user_id: current_user.id)
+    @user_management = Management.where(user_id: current_user.id)
+    @user = current_user
+    @wage = Wage.find_by(id: current_user.id)
   end
 
   def new
-    @management = Management.new
+    @end_of_months = (Date.today..Date.today.advance(months: 12)).select{|date| date == date.end_of_month }
   end
 
   def create
     @management = Management.new(management_params)
-    @management.user_id = current_user.id
-    if @management.save
+    params[:date] = params[:date].to_datetime #データ変換しなければ保存できない
+    # @management.user_id = current_user.id
+      @management.save!
       flash[:notice] = '投稿しました！'
       redirect_to managements_path
-    else
-      flash.now[:alert] = '入力内容が正しくありません'
-      render :index
-    end
+
   end
 
   def edit
+
   end
 
   def update
-    @management.update(management_params)
+    @management.update(up_management_params)
     redirect_to managements_path
   end
 
   private
 
   def management_params
-    params.require(:management).permit(:uptime, :unit, :date, :date)
+    params.permit( :user_id, :project, :uptime, :unit , :date)
+  end
+
+  def up_management_params
+    params.require(:management).permit( :user_id, :project, :uptime, :unit , :date)
   end
 
   def set_management
