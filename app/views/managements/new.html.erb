@@ -1,10 +1,12 @@
 <h1><p>稼働状況入力画面 </h1>
-
 <h2>新規登録 </h2>
 <%= form_with model: @management, url: managements_path, id: 'new_management', class: 'new_management', local: true do |f| %>
+
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.hidden_field :project, :value => 0 %>
     <div class="field">
     <%= f.label :date %><br />
-    <%= f.text_field :date, autofocus: true %>
+    <%= f.select :date, @end_of_months %>
     </div>
 
     <div class="field">
@@ -18,7 +20,7 @@
     </div>
 
     <div class="actions">
-    <%= f.submit "Create" %>
+    <%= f.submit "稼働登録" %>
   </div>
 <% end %>
 

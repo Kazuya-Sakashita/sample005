@@ -3,6 +3,11 @@ class MypagesController < ApplicationController
   before_action :set_user
   # ログイン済ユーザーのみにアクセスを許可する
 
+  def index
+    @user = current_user
+    @wage = Wage.find_by(id: current_user.id)
+  end
+  
   def show
     @user = current_user
     @wage = Wage.find_by(id: current_user.id)

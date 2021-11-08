@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_11_04_224743) do
     t.integer "user_id", null: false
     t.integer "project", default: 0, null: false
     t.integer "uptime"
+    t.integer "unit"
     t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

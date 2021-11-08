@@ -14,12 +14,12 @@
   <td>アクション</td>
 </tr>
 
-<% @management.each do |m| %>
+<% @user_management.each do |m| %>
     <tr>
     <td><%= m.date %></td>
     <td><%= m.uptime %></td>
-    <td><%= m.unit_cost %></td>
-    <td><%= m.unit %></td>
+    <td><%= @wage.unit_price %></td>
+    <td><%= @wage.unit %></td>
     <td><%= link_to "変更", edit_management_path(m.id)%></td>
     </tr>
 
