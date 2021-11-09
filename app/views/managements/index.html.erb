@@ -1,5 +1,5 @@
 <h1>エンジニア稼働管理画面　一覧</h1>
-<%= link_to "マイページ", mypages_path %>
+<%= link_to "マイページ", mypage_path(current_user.id) %>
 
 <hr>
 <%= link_to "新規登録", new_management_path %>
@@ -9,8 +9,10 @@
 <tr>
   <td>稼働月</td>
   <td>稼働時間</td>
+  <% if @wage.present? %> 
   <td>単価</td>
   <td>単位</td>
+  <% end %>
   <td>アクション</td>
 </tr>
 
@@ -18,8 +20,10 @@
     <tr>
     <td><%= m.date %></td>
     <td><%= m.uptime %></td>
+    <% if @wage.present? %> 
     <td><%= @wage.unit_price %></td>
     <td><%= @wage.unit %></td>
+    <% end %>
     <td><%= link_to "変更", edit_management_path(m.id)%></td>
     </tr>
 
