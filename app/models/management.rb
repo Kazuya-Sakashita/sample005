@@ -1,5 +1,5 @@
 class Management < ApplicationRecord
-  belongs_to :wage, optional: true
+  belongs_to :wage,optional: true
   belongs_to :user
  
 

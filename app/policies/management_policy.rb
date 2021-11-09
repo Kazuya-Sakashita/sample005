@@ -3,7 +3,7 @@
 # ただしユーザー詳細は管理ユーザーのみ許可
 class UserPolicy < ApplicationPolicy
   def index?
-    true
+    user.admin?
   end
 
   def show?

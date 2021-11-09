@@ -4,9 +4,16 @@ class ManagementsController < ApplicationController
   before_action :set_management, only: [:edit, :update]
 
   def index
-    @user_management = Management.where(user_id: current_user.id)
-    @user = current_user
-    @wage = Wage.find_by(id: current_user.id)
+    if current_user.admin?
+      @user_managements = Management.all
+      @user = current_user
+      # @wage = Wage.find_by(id: current_user.id)
+      @wages = Wage.all
+    else
+      redirect_to management_path(current_user.id)
+      @user = current_user
+      authorize @user
+    end
   end
 
   def new
@@ -20,7 +27,12 @@ class ManagementsController < ApplicationController
       @management.save!
       flash[:notice] = '投稿しました！'
       redirect_to managements_path
+  end
 
+  def show
+    @user_management = Management.where(user_id: current_user.id)
+    @user = current_user
+    authorize @user
   end
 
   def edit
