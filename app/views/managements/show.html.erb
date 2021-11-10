@@ -20,7 +20,8 @@
     <td><%= m.uptime %></td>
 
     <% if m.user.wage.present? %> 
-    <td><%= m.user.wage.unit_price %></td>
+    <td><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
+
     <td><%= m.user.wage.unit %></td>
     <% else %>
     <td> 設定されていません </td>

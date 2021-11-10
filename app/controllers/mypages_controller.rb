@@ -10,7 +10,7 @@ class MypagesController < ApplicationController
 
   def show
     @user = current_user
-    @wage = Wage.find_by(id: current_user.id)
+    @wage = Wage.find_by(user_id: current_user.id)
     # find_byで存在しない場合、エラーでなくnilを返す
   end
 

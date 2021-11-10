@@ -38,7 +38,7 @@
         <tr>
         <% if @wage.present? %> 
         <th>単価:</th>
-        <td><%= @wage.unit_price %></td>
+        <td><%= number_to_currency(@wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
         </tr>
         <tr>
         <th>単位:</th>

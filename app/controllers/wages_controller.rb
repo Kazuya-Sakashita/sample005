@@ -18,7 +18,7 @@ class WagesController < ApplicationController
 
   def show
     @user = current_user
-    @wage = Wage.find(id: current_user.id)
+    @wage = Wage.where(user_id: current_user.id)
   end
 
   def destroy
