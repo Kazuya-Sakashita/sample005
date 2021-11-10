@@ -32,6 +32,7 @@ gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pundit', '~> 1.1'
 gem 'aasm', '~> 3.0', '>= 3.0.24'
 gem 'ransack', '~> 2.4', '>= 2.4.2'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

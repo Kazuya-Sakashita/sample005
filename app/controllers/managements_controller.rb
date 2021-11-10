@@ -5,7 +5,7 @@ class ManagementsController < ApplicationController
 
   def index
     if current_user.admin?
-      @user_managements = Management.all
+      @user_managements = Management.all.page(params[:page]).per(10)
       @user = current_user
       # @wage = Wage.find_by(id: current_user.id)
       @wages = Wage.all
