@@ -17,16 +17,16 @@ class ManagementsController < ApplicationController
   end
 
   def new
-    @end_of_months = (Date.today..Date.today.advance(months: 12)).select{|date| date == date.end_of_month }
+    @end_of_months = (Date.today..Date.today.advance(months: 12)).select { |date| date == date.end_of_month }
   end
 
   def create
     @management = Management.new(management_params)
-    params[:date] = params[:date].to_datetime #データ変換しなければ保存できない
+    params[:date] = params[:date].to_datetime # データ変換しなければ保存できない
     # @management.user_id = current_user.id
-      @management.save!
-      flash[:notice] = '投稿しました！'
-      redirect_to managements_path
+    @management.save!
+    flash[:notice] = '投稿しました！'
+    redirect_to managements_path
   end
 
   def show
@@ -36,7 +36,6 @@ class ManagementsController < ApplicationController
   end
 
   def edit
-
   end
 
   def update
@@ -47,11 +46,11 @@ class ManagementsController < ApplicationController
   private
 
   def management_params
-    params.permit( :user_id, :project, :uptime, :unit , :date)
+    params.permit(:user_id, :project, :uptime, :unit, :date)
   end
 
   def up_management_params
-    params.require(:management).permit( :user_id, :project, :uptime, :unit , :date)
+    params.require(:management).permit(:user_id, :project, :uptime, :unit, :date)
   end
 
   def set_management

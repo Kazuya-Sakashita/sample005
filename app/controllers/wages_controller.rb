@@ -1,9 +1,9 @@
 class WagesController < ApplicationController
   def index
     @user == current_user.admin?
-      # adminは全ユーザーを表示
-      @wages = Wage.all
-      @users = User.all
+    # adminは全ユーザーを表示
+    @wages = Wage.all
+    @users = User.all
   end
 
   def edit
