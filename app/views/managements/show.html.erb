@@ -9,10 +9,8 @@
 <tr>
   <td>稼働月</td>
   <td>稼働時間</td>
-  <% if @wage.present? %> 
   <td>単価</td>
   <td>単位</td>
-  <% end %>
   <td>アクション</td>
 </tr>
 
@@ -25,8 +23,8 @@
     <td><%= m.user.wage.unit_price %></td>
     <td><%= m.user.wage.unit %></td>
     <% else %>
-    <td> 未設定です </td>
-    <td> 未設定です </td>
+    <td> 設定されていません </td>
+    <td> 設定されていません </td>
     <% end %>
     <td><%= link_to "変更", edit_management_path(m.id)%></td>
     </tr>
