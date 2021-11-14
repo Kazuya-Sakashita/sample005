@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_12_133254) do
+ActiveRecord::Schema.define(version: 2021_11_13_223028) do
 
   create_table "clients", force: :cascade do |t|
     t.string "company_name"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 2021_11_12_133254) do
     t.integer "unit", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "aasm_state"
     t.index ["user_id"], name: "index_wages_on_user_id"
   end
 

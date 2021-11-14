@@ -4,5 +4,5 @@ class Skill < ApplicationRecord
 
   validates :skill, uniqueness: true
 
-  enum skill_level: { Junior: 0, Middle: 1, Senior: 2 }
+  # enum skill_level: { Junior: 0, Middle: 1, Senior: 2 }
 end
