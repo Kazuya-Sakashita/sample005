@@ -7,6 +7,7 @@
 <tbody>
 
 <tr>
+  <td>ステータス</td>
   <td>名前</td>
   <td>稼働月</td>
   <td>稼働時間</td>
@@ -16,6 +17,7 @@
 
 <% @user_managements.each do |m| %>
     <tr>
+    <td><%= m.user.aasm_state %></td>
     <td><%= m.user.name %></td>
     <td><%= m.date %></td>
     <td><%= m.uptime %></td>
