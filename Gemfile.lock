@@ -1,7 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    aasm (3.4.0)
+    aasm (5.2.0)
+      concurrent-ruby (~> 1.0)
     actioncable (6.1.4.1)
       actionpack (= 6.1.4.1)
       activesupport (= 6.1.4.1)
@@ -333,7 +334,7 @@ PLATFORMS
   arm64-darwin-20
 
 DEPENDENCIES
-  aasm
+  aasm (~> 5.2)
   after_commit_everywhere (~> 1.0)
   bootsnap (>= 1.4.4)
   byebug

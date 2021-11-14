@@ -31,7 +31,7 @@ gem 'devise-i18n', '~> 1.10'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pundit', '~> 1.1'
 
-gem 'aasm'
+gem 'aasm', '~> 5.2'
 gem 'after_commit_everywhere', '~> 1.0'
 gem 'ransack', '~> 2.4', '>= 2.4.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'

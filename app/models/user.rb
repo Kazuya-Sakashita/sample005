@@ -1,4 +1,20 @@
 class User < ApplicationRecord
+  include AASM
+
+  aasm do # default column: aasm_state
+    state :sleeping, initial: true
+    state :running
+
+    event :run do
+      transitions from: :sleeping, to: :running
+    end
+
+    event :sleep do
+      transitions from: :running, to: :sleeping
+    end
+  end
+
+  
   has_many :skill_managements
   has_many :managements
   has_many :skills, through: :skill_managements
@@ -28,26 +44,22 @@ class User < ApplicationRecord
                     length: { minimum: 3,maximum:30}
   validates :name, length:{ maximum:50}
 
-  include AASM
+  aasm do
+    state :sleeping, initial: true
+    state :running, :cleaning
 
-  aasm do # default column: aasm_state
-    state :active, initial: true
-    state :suspended #凍結
-    state :banned #BAN
-    state :inactive #退会
-    state :sleeping #休止
+    event :run do
+      transitions from: :sleeping, to: :running
+    end
 
-
-    event :active do
-      transitions from: :sleeping, to: :active
+    event :clean do
+      transitions from: :running, to: :cleaning
     end
 
     event :sleep do
-      transitions from: :active, to: :sleeping
-    end
-
-    event :ban do
-      transitions from: :active, to: :banned
+      transitions from: [:running, :cleaning], to: :sleeping
     end
   end
+
+  
 end
