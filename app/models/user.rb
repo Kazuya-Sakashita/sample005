@@ -30,6 +30,24 @@ class User < ApplicationRecord
 
   include AASM
 
-  aasm do
+  aasm do # default column: aasm_state
+    state :active, initial: true
+    state :suspended #凍結
+    state :banned #BAN
+    state :inactive #退会
+    state :sleeping #休止
+
+
+    event :active do
+      transitions from: :sleeping, to: :active
+    end
+
+    event :sleep do
+      transitions from: :active, to: :sleeping
+    end
+
+    event :ban do
+      transitions from: :active, to: :banned
+    end
   end
 end
