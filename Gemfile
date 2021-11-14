@@ -30,6 +30,11 @@ gem 'dotenv-rails', '>= 2.7.6'
 gem 'devise-i18n', '~> 1.10'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pundit', '~> 1.1'
+
+gem 'aasm', '~> 5.2'
+gem 'after_commit_everywhere', '~> 1.0'
+gem 'ransack', '~> 2.4', '>= 2.4.2'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -52,7 +57,7 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  # gem 'spring'
 end
 
 group :test do

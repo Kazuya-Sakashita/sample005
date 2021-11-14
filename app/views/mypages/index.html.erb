@@ -36,6 +36,7 @@
         <th>口座情報:</th>       <td><%= @user.account_info %></td>
         </tr>
         <tr>
+        <% if @wage.present? %> 
         <th>単価:</th>
         <td><%= @wage.unit_price %></td>
         </tr>
@@ -43,6 +44,7 @@
         <th>単位:</th>
         <td><%= @wage.unit %></td>
         </tr>
+        <% end %>
         </table>
         </tbody>
 

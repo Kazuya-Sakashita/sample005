@@ -1,5 +1,5 @@
 <h1>エンジニア稼働管理画面　一覧</h1>
-<%= link_to "管理者画面",  users_path %>
+<%= link_to "マイページ", mypage_path(current_user.id) %>
 
 <hr>
 <%= link_to "新規登録", new_management_path %>
@@ -7,26 +7,27 @@
 <tbody>
 
 <tr>
-  <td>名前</td>
   <td>稼働月</td>
   <td>稼働時間</td>
   <td>単価</td>
   <td>単位</td>
+  <td>アクション</td>
 </tr>
 
-<% @user_managements.each do |m| %>
+<% @user_management.each do |m| %>
     <tr>
-    <td><%= m.user.name %></td>
     <td><%= m.date %></td>
     <td><%= m.uptime %></td>
 
     <% if m.user.wage.present? %> 
-      <td><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
-      <td><%= m.user.wage.unit %></td>
+    <td><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
+
+    <td><%= m.user.wage.unit %></td>
     <% else %>
-    <td> 未設定です </td>
-    <td> 未設定です </td>
+    <td> 設定されていません </td>
+    <td> 設定されていません </td>
     <% end %>
+    <td><%= link_to "変更", edit_management_path(m.id)%></td>
     </tr>
 
 <% end %>
@@ -34,9 +35,6 @@
 </table>
 
 <hr>
-<%= paginate @user_managements %>
-<hr>
-
 <div>
 <%= link_to "Back", :back %>
 </div>

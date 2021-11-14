@@ -1,9 +1,9 @@
 class WagesController < ApplicationController
   def index
     @user == current_user.admin?
-      # adminは全ユーザーを表示
-      @wages = Wage.all
-      @users = User.all
+    # adminは全ユーザーを表示
+    @wages = Wage.all
+    @users = User.all
   end
 
   def edit
@@ -18,7 +18,7 @@ class WagesController < ApplicationController
 
   def show
     @user = current_user
-    @wage = Wage.find(id: current_user.id)
+    @wage = Wage.where(user_id: current_user.id)
   end
 
   def destroy

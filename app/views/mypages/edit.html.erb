@@ -1,5 +1,5 @@
 <h1><p>基本情報編集 </h1>
-<%= link_to "マイページ", mypages_path %>
+<%= link_to "マイページ", mypage_path(current_user.id) %>
 
 <h2>Edit </h2>
 <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>

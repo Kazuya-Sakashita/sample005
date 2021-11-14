@@ -1,5 +1,5 @@
 <h1><p>稼働状況編集 </h1>
-<%= link_to "マイページ", mypages_path %>
+<%= link_to "マイページ", mypage_path(current_user.id) %>
 
 <%= form_with model: @management, url: management_path, id: 'management', class: 'management', local: true do |f| %>
     <div class="field">

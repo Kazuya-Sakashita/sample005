@@ -1,7 +1,7 @@
 <h1>Wages#index</h1>
 <p>Find me in app/views/wages/index.html.erb</p>
 
-<%= link_to "エンジニア管理", users_path %><br>
+<%= link_to "管理者画面", users_path %><br>
 <%= link_to '報酬条件入力', new_wage_path %>
 
 <table class="">
@@ -19,7 +19,7 @@
     <tr>
     <td><%= wage.user.name %></td>
     <td><%= wage.user.email %></td>
-    <td><%= wage.unit_price %></td>
+    <td><%= number_to_currency(wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
     <td><%= wage.unit %></td>
     <td> <%= link_to "編集", edit_wage_path(id: wage.id) %>
          <%= link_to "削除",  wage_path(id: wage.id), method: :delete , data: {confirm: "削除しますか？"}%></td>
