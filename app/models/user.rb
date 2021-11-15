@@ -14,7 +14,6 @@ class User < ApplicationRecord
     end
   end
 
-  
   has_many :skill_managements
   has_many :managements
   has_many :skills, through: :skill_managements
@@ -41,12 +40,12 @@ class User < ApplicationRecord
   # enum unit: { hours: 0, days: 1 }
 
   validates :email, presence: true, uniqueness: true,
-                    length: { minimum: 3,maximum:30}
-  validates :name, length:{ maximum:50}
+                    length: { minimum: 3, maximum: 30 }
+  validates :name, length: { maximum: 50 }
 
   aasm do
-    state :sleeping, initial: true
-    state :running, :cleaning
+    state :registered, initial: true
+    state :active, :suspended, :banned, :inactive
 
     event :run do
       transitions from: :sleeping, to: :running
@@ -60,6 +59,4 @@ class User < ApplicationRecord
       transitions from: [:running, :cleaning], to: :sleeping
     end
   end
-
-  
 end
