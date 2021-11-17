@@ -43,20 +43,27 @@ class User < ApplicationRecord
                     length: { minimum: 3, maximum: 30 }
   validates :name, length: { maximum: 50 }
 
-  aasm do
-    state :registered, initial: true
-    state :active, :suspended, :banned, :inactive
+  aasm do # default column: aasm_state
+    state :active, initial: true
+    state :suspended #凍結
+    state :banned #BAN
+    state :inactive #退会
 
-    event :run do
-      transitions from: :sleeping, to: :running
+
+    event :active do
+      transitions from: :suspended, to: :active
     end
 
-    event :clean do
-      transitions from: :running, to: :cleaning
+    event :suspended do
+      transitions from: :active, to: :suspended
     end
 
-    event :sleep do
-      transitions from: [:running, :cleaning], to: :sleeping
-    end
+    event :ban do
+     transitions from: [:active, :suspended], to: :banned
+   end
+
+   event :ban do
+     transitions from: [:active, :suspended], to: :inactive
+   end
   end
 end

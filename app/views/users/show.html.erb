@@ -13,6 +13,9 @@
     <h2>登録情報</h2>
     <table>
     <tbody>
+    <tr>
+    <th>ステータス:</th> <td> <%= @user.aasm_state %></td>
+    </tr>
         <tr>
         <th>メールアドレス:</th> <td> <%= @user.email %></td>
         </tr>
@@ -20,10 +23,11 @@
         <th>氏名:</th>          <td><%= @user.name %></td>
         </tr>        <tr>
         <th>電話番号:</th>       <td><%= @user.phone_number %></td>
-        </tr>        <tr>
-        <th>単価:</th>       <td><%= @user.unit_price %></td>
+        </tr>        
+        <tr>
+        <th>単価:</th>       <td><%= @user.wage.unit_price %></td>
         </tr>     <tr>
-        <th>単位:</th>       <td><%= @user.unit %></td>
+        <th>単位:</th>       <td><%= @user.wage.unit %></td>
         </tr>       
 
         </table>

@@ -13,6 +13,8 @@
   <td>稼働時間</td>
   <td>単価</td>
   <td>単位</td>
+  <td>ステータス変更</td>
+
 </tr>
 
 <% @user_managements.each do |m| %>
@@ -21,7 +23,6 @@
     <td><%= m.user.name %></td>
     <td><%= m.date %></td>
     <td><%= m.uptime %></td>
-
     <% if m.user.wage.present? %> 
       <td><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
       <td><%= m.user.wage.unit %></td>
@@ -29,8 +30,9 @@
     <td> 未設定です </td>
     <td> 未設定です </td>
     <% end %>
-    </tr>
+    <td><%= link_to "活動<=>休止", user_state_path(id:m.user_id)  %></td>
 
+    </tr>
 <% end %>
 </tbody>
 </table>

@@ -1,6 +1,5 @@
 class ManagementsController < ApplicationController
-  before_action :authenticate_user!
-  # ログイン済ユーザーのみにアクセスを許可する
+  before_action :authenticate_user!   # ログイン済ユーザーのみにアクセスを許可する
   before_action :set_management, only: [:edit, :update]
 
   def index
@@ -30,12 +29,24 @@ class ManagementsController < ApplicationController
   end
 
   def show
-    @user_management = Management.where(user_id: current_user.id)
-    @user = current_user
-    authorize @user
+
   end
 
   def edit
+  end
+
+  def state
+    @user = User.find(params[:id])
+    if @user.aasm_state == 'suspended'
+    @user.active!
+    flash[:notice] = 'ステータスをactiveに変更しました！'
+    redirect_to managements_path
+    else
+      @user.aasm_state == 'active'
+    @user.suspended!
+    flash[:notice] = 'ステータスをactiveに変更しました！'
+    redirect_to managements_path
+    end
   end
 
   def update
@@ -56,7 +67,7 @@ class ManagementsController < ApplicationController
   def set_management
     @management = Management.find(params[:id])
     @user = @management.user_id
-    return unless current_user.id != @user # 稼働管理投稿者のuser_idとログイン者を比較
+    return unless current_user.id != @user # 稼働管理user_idとログイン者を比較
 
     redirect_to managements_path       # 一覧ページにリダイレクトさせる
   end

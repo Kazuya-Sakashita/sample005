@@ -12,10 +12,16 @@ Rails.application.routes.draw do
     resources :skill
   end
   resources :mypages
-  resources :users
+  # resources :users do
+  #   put :suspended
+  # end
   resources :managements
+  resources :users
   resources :clients
   resources :projects
   resources :wages
+
+  get 'managements/:id/state', to: 'managements#state', as:'user_state'
+  get '/patients/:id', to: 'patients#show', as: 'patient'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
