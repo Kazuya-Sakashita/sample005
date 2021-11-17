@@ -29,7 +29,6 @@ class ManagementsController < ApplicationController
   end
 
   def show
-
   end
 
   def edit
@@ -37,15 +36,18 @@ class ManagementsController < ApplicationController
 
   def state
     @user = User.find(params[:id])
-    if @user.aasm_state == 'suspended'
-    @user.active!
-    flash[:notice] = 'ステータスをactiveに変更しました！'
-    redirect_to managements_path
+    case @user.aasm_state
+
+    when 'suspended'
+      @user.active!
+      flash[:notice] = 'ステータスをactiveに変更しました！'
+      redirect_to managements_path
+    when 'active'
+      @user.suspended!
+      flash[:notice] = 'ステータスをactiveに変更しました！'
+      redirect_to managements_path
     else
-      @user.aasm_state == 'active'
-    @user.suspended!
-    flash[:notice] = 'ステータスをactiveに変更しました！'
-    redirect_to managements_path
+      render :index
     end
   end
 

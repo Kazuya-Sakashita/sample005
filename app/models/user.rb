@@ -45,10 +45,9 @@ class User < ApplicationRecord
 
   aasm do # default column: aasm_state
     state :active, initial: true
-    state :suspended #凍結
-    state :banned #BAN
-    state :inactive #退会
-
+    state :suspended # 凍結
+    state :banned # BAN
+    state :inactive # 退会
 
     event :active do
       transitions from: :suspended, to: :active
@@ -59,11 +58,11 @@ class User < ApplicationRecord
     end
 
     event :ban do
-     transitions from: [:active, :suspended], to: :banned
-   end
+      transitions from: [:active, :suspended], to: :banned
+    end
 
-   event :ban do
-     transitions from: [:active, :suspended], to: :inactive
-   end
+    event :ban do
+      transitions from: [:active, :suspended], to: :inactive
+    end
   end
 end
