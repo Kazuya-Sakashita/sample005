@@ -29,6 +29,7 @@ class ManagementsController < ApplicationController
   end
 
   def show
+    @user_management = Management.where(user_id: current_user.id)
   end
 
   def edit
