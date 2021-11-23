@@ -1,9 +1,10 @@
 class WagesController < ApplicationController
   def index
-    @user == current_user.admin?
-    # adminは全ユーザーを表示
-    @wages = Wage.all
-    @users = User.all
+    @users = if current_user.admin?
+               # adminは全ユーザーを表示
+               @wages = Wage.all
+               @users = User.all
+             end
   end
 
   def edit
@@ -49,7 +50,6 @@ class WagesController < ApplicationController
     when 'tentative'
       @user.run!
       flash[:notice] = '単価登録しました'
-    else
     end
     @wage.save
     redirect_to wages_path

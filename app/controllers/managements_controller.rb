@@ -7,7 +7,7 @@ class ManagementsController < ApplicationController
     if current_user.admin?
       @q = Management.ransack(params[:q])
       # @user_managements = @q.result.page(params[:page]).per(10)
-      @user_managements  = @q.result.includes(:user, :wage).page(params[:page]).per(10)
+      @user_managements = @q.result.includes(:user, :wage).page(params[:page]).per(10)
       @user = current_user
       # @wage = Wage.find_by(id: current_user.id)
       @wages = Wage.all
@@ -63,9 +63,7 @@ class ManagementsController < ApplicationController
   def search
     index
     render :index
-
   end
-
 
   private
 
@@ -86,9 +84,10 @@ class ManagementsController < ApplicationController
     @user = @management.user_id
     return unless current_user.id != @user # 稼働管理user_idとログイン者を比較
 
-    redirect_to managements_path       # 一覧ページにリダイレクトさせる
+    redirect_to managements_path # 一覧ページにリダイレクトさせる
   end
+
   def set_user_column
-    @management_user = Management.select("user_id").distinct  # 重複なくUser_idカラムのデータを取り出す
+    @management_user = Management.select('user_id').distinct  # 重複なくUser_idカラムのデータを取り出す
   end
 end

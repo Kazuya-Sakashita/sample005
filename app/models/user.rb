@@ -31,8 +31,8 @@ class User < ApplicationRecord
   validates :name, length: { maximum: 50 }
 
   aasm column: :account_state do
-    state :tentative, initial: true #単価設定前
-    state :active #通常状態
+    state :tentative, initial: true # 単価設定前
+    state :active # 通常状態
     state :sleeping # 休止
     state :inactive # 退会
 
