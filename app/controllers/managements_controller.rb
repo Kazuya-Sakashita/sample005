@@ -1,5 +1,5 @@
 class ManagementsController < ApplicationController
-  before_action :authenticate_user!   # ログイン済ユーザーのみにアクセスを許可する
+  before_action :authenticate_user! # ログイン済ユーザーのみにアクセスを許可する
   before_action :set_management, only: [:edit, :update]
   before_action :set_q, only: [:index, :search]
 
@@ -88,6 +88,6 @@ class ManagementsController < ApplicationController
   end
 
   def set_user_column
-    @management_user = Management.select('user_id').distinct  # 重複なくUser_idカラムのデータを取り出す
+    @management_user = Management.select('user_id').distinct # 重複なくUser_idカラムのデータを取り出す
   end
 end
