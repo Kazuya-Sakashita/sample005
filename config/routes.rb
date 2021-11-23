@@ -15,7 +15,11 @@ Rails.application.routes.draw do
   # resources :users do
   #   put :suspended
   # end
-  resources :managements
+  resources :managements do
+    collection do
+      match 'search' => 'managements#search', via: [:get, :post], as: :search
+    end
+  end
   resources :users
   resources :clients
   resources :projects

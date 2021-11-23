@@ -41,6 +41,7 @@
                                          PATCH    /mypages/:id(.:format)                                                                            mypages#update
                                          PUT      /mypages/:id(.:format)                                                                            mypages#update
                                          DELETE   /mypages/:id(.:format)                                                                            mypages#destroy
+                      search_managements GET|POST /managements/search(.:format)                                                                     managements#search
                              managements GET      /managements(.:format)                                                                            managements#index
                                          POST     /managements(.:format)                                                                            managements#create
                           new_management GET      /managements/new(.:format)                                                                        managements#new
@@ -81,7 +82,7 @@
                                          PATCH    /wages/:id(.:format)                                                                              wages#update
                                          PUT      /wages/:id(.:format)                                                                              wages#update
                                          DELETE   /wages/:id(.:format)                                                                              wages#destroy
-                          user_suspended PUT      /users/:id/suspended(.:format)                                                                    users#suspended
+                              user_state GET      /managements/:id/state(.:format)                                                                  managements#state
                                  patient GET      /patients/:id(.:format)                                                                           patients#show
            rails_postmark_inbound_emails POST     /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
               rails_relay_inbound_emails POST     /rails/action_mailbox/relay/inbound_emails(.:format)                                              action_mailbox/ingresses/relay/inbound_emails#create

@@ -1,19 +1,6 @@
 class User < ApplicationRecord
   include AASM
 
-  aasm do # default column: aasm_state
-    state :sleeping, initial: true
-    state :running
-
-    event :run do
-      transitions from: :sleeping, to: :running
-    end
-
-    event :sleep do
-      transitions from: :running, to: :sleeping
-    end
-  end
-
   has_many :skill_managements
   has_many :managements
   has_many :skills, through: :skill_managements
