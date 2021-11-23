@@ -30,26 +30,22 @@ class User < ApplicationRecord
                     length: { minimum: 3, maximum: 30 }
   validates :name, length: { maximum: 50 }
 
-  aasm do # default column: aasm_state
-    state :active, initial: true
-    state :suspended # 凍結
-    state :banned # BAN
+  aasm column: :account_state do
+    state :tentative, initial: true #単価設定前
+    state :active #通常状態
+    state :sleeping # 休止
     state :inactive # 退会
 
-    event :active do
-      transitions from: :suspended, to: :active
+    event :run do
+      transitions from: [:tentative, :sleeping], to: :active
     end
 
-    event :suspended do
-      transitions from: :active, to: :suspended
+    event :sleep do
+      transitions from: :active, to: :sleeping
     end
 
-    event :ban do
-      transitions from: [:active, :suspended], to: :banned
-    end
-
-    event :ban do
-      transitions from: [:active, :suspended], to: :inactive
+    event :inactive do
+      transitions from: [:active, :sleeping], to: :inactive
     end
   end
 end

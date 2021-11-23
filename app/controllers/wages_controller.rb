@@ -43,6 +43,14 @@ class WagesController < ApplicationController
 
   def create
     @wage = Wage.new(wage_params)
+    @user = User.find(@wage.user.id)
+    case @user.account_state
+
+    when 'tentative'
+      @user.run!
+      flash[:notice] = '単価登録しました'
+    else
+    end
     @wage.save
     redirect_to wages_path
     @user = current_user

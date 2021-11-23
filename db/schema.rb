@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_101513) do
     t.datetime "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "aasm_state"
+    t.string "management_state"
     t.index ["user_id"], name: "index_managements_on_user_id"
   end
 
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_101513) do
     t.string "github_url"
     t.string "account_info"
     t.integer "role", default: 0
-    t.string "aasm_state"
+    t.string "account_state"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 2021_11_18_101513) do
     t.integer "unit", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "aasm_state"
     t.index ["user_id"], name: "index_wages_on_user_id"
   end
 
