@@ -40,14 +40,14 @@ class ManagementsController < ApplicationController
 
   def state
     @user = User.find(params[:id])
-    case @user.aasm_state
+    case @user.account_state
 
-    when 'suspended'
-      @user.active!
+    when 'sleeping'
+      @user.run!
       flash[:notice] = 'ステータスをactiveに変更しました！'
       redirect_to managements_path
     when 'active'
-      @user.suspended!
+      @user.sleep!
       flash[:notice] = 'ステータスをsuspendedに変更しました！'
       redirect_to managements_path
     else
