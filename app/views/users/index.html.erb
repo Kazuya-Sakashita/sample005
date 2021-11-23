@@ -7,20 +7,44 @@
   <%= link_to 'Sign_in', new_user_session_path %>
 <% end %>
 <div>
-<%= link_to 'エンジニア一覧', managements_path %>
+  <%= link_to 'エンジニア一覧', managements_path %>
 </div>
 <div>
-<%= link_to '案件一覧', projects_path %>
+  <%= link_to '案件一覧', projects_path %>
 </div>
 <div>
-<%= link_to "報酬条件管理", wages_path %><br>
+  <%= link_to "報酬条件管理", wages_path %><br>
 </div>
-
-
-<ul class="users">
+<hr>
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>account_state</th>
+  </tr>
+  </thead>
+  <tbody class="users">
   <% @users.each do |user| %>
-    <li>
-      <%= link_to user.email, users_path %>
-    </li>
+    <tr>
+      <td>
+        <%= user.name %>
+      </td>
+      <td>
+        <%= user.email %>
+      </td>
+
+      <td>
+        <% if user.account_state == 'tentative' %>
+          単価を設定してください
+        <% else %>
+          <%= user.account_state %>
+        <% end %>
+      </td>
+    </tr>
+
   <% end %>
-</ul>
+  </tbody>
+</table>
+
+<%= paginate @users %>

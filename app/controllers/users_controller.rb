@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @users = if current_user.admin?
                @user = current_user
                # adminは全ユーザーを表示
-               User.all
+               User.all.page(params[:page]).per(20)
              else
                # generalは、自分のを表示
                redirect_to mypage_path(current_user.id)
