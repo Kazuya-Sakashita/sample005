@@ -1,20 +1,6 @@
 class User < ApplicationRecord
   include AASM
 
-  aasm do # default column: aasm_state
-    state :sleeping, initial: true
-    state :running
-
-    event :run do
-      transitions from: :sleeping, to: :running
-    end
-
-    event :sleep do
-      transitions from: :running, to: :sleeping
-    end
-  end
-
-  
   has_many :skill_managements
   has_many :managements
   has_many :skills, through: :skill_managements
@@ -41,25 +27,25 @@ class User < ApplicationRecord
   # enum unit: { hours: 0, days: 1 }
 
   validates :email, presence: true, uniqueness: true,
-                    length: { minimum: 3,maximum:30}
-  validates :name, length:{ maximum:50}
+                    length: { minimum: 3, maximum: 30 }
+  validates :name, length: { maximum: 50 }
 
-  aasm do
-    state :sleeping, initial: true
-    state :running, :cleaning
+  aasm column: :account_state do
+    state :tentative, initial: true # 単価設定前
+    state :active # 通常状態
+    state :sleeping # 休止
+    state :inactive # 退会
 
     event :run do
-      transitions from: :sleeping, to: :running
-    end
-
-    event :clean do
-      transitions from: :running, to: :cleaning
+      transitions from: [:tentative, :sleeping], to: :active
     end
 
     event :sleep do
-      transitions from: [:running, :cleaning], to: :sleeping
+      transitions from: :active, to: :sleeping
+    end
+
+    event :inactive do
+      transitions from: [:active, :sleeping], to: :inactive
     end
   end
-
-  
 end

@@ -1,11 +1,12 @@
 class UsersController < ApplicationController
   before_action :pundit_auth
+  before_action :set_user, only: [:suspended, :show]
 
   def index
     @users = if current_user.admin?
                @user = current_user
                # adminは全ユーザーを表示
-               User.all
+               User.all.page(params[:page]).per(20)
              else
                # generalは、自分のを表示
                redirect_to mypage_path(current_user.id)
@@ -16,7 +17,7 @@ class UsersController < ApplicationController
 
   def show
     # 個別のUserの情報を表示
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
     # punditにてauthorizeメソッドにリソースオブジェクトを渡して認可状況を確認。
     authorize @user
   end
@@ -25,5 +26,9 @@ class UsersController < ApplicationController
 
   def pundit_auth
     authorize User.new
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 end

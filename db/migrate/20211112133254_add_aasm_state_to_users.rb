@@ -1,5 +1,5 @@
 class AddAasmStateToUsers < ActiveRecord::Migration[6.1]
   def change
-    add_column :users, :aasm_state, :string
+    add_column :users, :account_state, :string
   end
 end

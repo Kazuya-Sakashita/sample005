@@ -1,11 +1,13 @@
 class ManagementsController < ApplicationController
-  before_action :authenticate_user!
-  # ログイン済ユーザーのみにアクセスを許可する
+  before_action :authenticate_user! # ログイン済ユーザーのみにアクセスを許可する
   before_action :set_management, only: [:edit, :update]
+  before_action :set_q, only: [:index, :search]
 
   def index
     if current_user.admin?
-      @user_managements = Management.all.page(params[:page]).per(10)
+      @q = Management.ransack(params[:q])
+      # @user_managements = @q.result.page(params[:page]).per(10)
+      @user_managements = @q.result.includes(:user, :wage).page(params[:page]).per(10)
       @user = current_user
       # @wage = Wage.find_by(id: current_user.id)
       @wages = Wage.all
@@ -31,11 +33,26 @@ class ManagementsController < ApplicationController
 
   def show
     @user_management = Management.where(user_id: current_user.id)
-    @user = current_user
-    authorize @user
   end
 
   def edit
+  end
+
+  def state
+    @user = User.find(params[:id])
+    case @user.account_state
+
+    when 'sleeping'
+      @user.run!
+      flash[:notice] = 'ステータスをactiveに変更しました！'
+      redirect_to managements_path
+    when 'active'
+      @user.sleep!
+      flash[:notice] = 'ステータスをsuspendedに変更しました！'
+      redirect_to managements_path
+    else
+      render :index
+    end
   end
 
   def update
@@ -43,7 +60,16 @@ class ManagementsController < ApplicationController
     redirect_to managements_path
   end
 
+  def search
+    index
+    render :index
+  end
+
   private
+
+  def set_q
+    @q = Management.ransack(params[:q])
+  end
 
   def management_params
     params.permit(:user_id, :project, :uptime, :unit, :date)
@@ -56,8 +82,12 @@ class ManagementsController < ApplicationController
   def set_management
     @management = Management.find(params[:id])
     @user = @management.user_id
-    return unless current_user.id != @user # 稼働管理投稿者のuser_idとログイン者を比較
+    return unless current_user.id != @user # 稼働管理user_idとログイン者を比較
 
-    redirect_to managements_path       # 一覧ページにリダイレクトさせる
+    redirect_to managements_path # 一覧ページにリダイレクトさせる
+  end
+
+  def set_user_column
+    @management_user = Management.select('user_id').distinct # 重複なくUser_idカラムのデータを取り出す
   end
 end

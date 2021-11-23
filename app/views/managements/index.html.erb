@@ -1,25 +1,44 @@
 <h1>エンジニア稼働管理画面　一覧</h1>
 <%= link_to "管理者画面",  users_path %>
 
+<h1>ユーザー検索</h1>
+<%= search_form_for @q, url: search_managements_path,
+                    html: { method: :post } do |f| %>
+  <%= f.label :user_name_cont, 'ユーザー名' %>
+  <%= f.search_field :user_name_cont %>
+
+  <%= f.label :date_cont, '稼働月' %>
+  <%= f.search_field :date_cont %>
+  <br>
+  <%= f.submit '検索' %>
+<% end %>
+
 <hr>
 <%= link_to "新規登録", new_management_path %>
+
 <table class="">
 <tbody>
 
 <tr>
-  <td>名前</td>
-  <td>稼働月</td>
-  <td>稼働時間</td>
-  <td>単価</td>
-  <td>単位</td>
+  <th>ステータス</th>
+  <th> <%= sort_link(@q, :name) do %>
+      <strong>Name</strong>
+    <% end %></th>
+  <th>稼働月</th>
+  <th>稼働時間</th>
+
+  <th>単価</th>
+  <th>単位</th>
+  <th>ステータス変更</th>
+
 </tr>
 
 <% @user_managements.each do |m| %>
     <tr>
+    <td><%= m.user.account_state %></td>
     <td><%= m.user.name %></td>
     <td><%= m.date %></td>
     <td><%= m.uptime %></td>
-
     <% if m.user.wage.present? %> 
       <td><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
       <td><%= m.user.wage.unit %></td>
@@ -27,8 +46,9 @@
     <td> 未設定です </td>
     <td> 未設定です </td>
     <% end %>
-    </tr>
+    <td><%= link_to "活動<=>凍結", user_state_path(id:m.user_id)  %></td>
 
+    </tr>
 <% end %>
 </tbody>
 </table>
