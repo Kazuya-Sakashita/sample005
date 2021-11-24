@@ -2,25 +2,29 @@
 
 <% if current_user.present? %>
   <p>現在ログインしているユーザー:<%= current_user.email %></p>
-  <%= link_to 'Sign_out', destroy_user_session_path, method: :delete %>
+  <%= link_to 'ログオフ', destroy_user_session_path, method: :delete %>
 <% else %>
-  <%= link_to 'Sign_in', new_user_session_path %>
+  <%= link_to 'ログイン', new_user_session_path %>
 <% end %>
 <div>
-  <%= link_to 'エンジニア一覧', managements_path %>
+  <%= link_to 'エンジニア稼働管理画面', managements_path %>
+</div>
+
+<div>
+  <%= link_to "報酬条件管理（単価設定）", wages_path %><br>
 </div>
 <div>
   <%= link_to '案件一覧', projects_path %>
 </div>
-<div>
-  <%= link_to "報酬条件管理", wages_path %><br>
-</div>
+<hr>
+＊スキル・スキルレベルで検索ができるようにする
 <hr>
 <table>
   <thead>
   <tr>
     <th>Name</th>
     <th>Email</th>
+    <th>skill</th>
     <th>account_state</th>
   </tr>
   </thead>
@@ -33,10 +37,14 @@
       <td>
         <%= user.email %>
       </td>
+      <td> <% user.skill_managements.each do |skill| %>
+          <%= skill.skill.skill %> /
+          <%= skill.skill_level %>　　
+        <% end %></td>
 
       <td>
         <% if user.account_state == 'tentative' %>
-          単価を設定してください
+          <%=link_to '単価を設定してください',new_wage_path %>
         <% else %>
           <%= user.account_state %>
         <% end %>

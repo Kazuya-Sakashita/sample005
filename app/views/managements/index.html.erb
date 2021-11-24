@@ -1,34 +1,44 @@
 <h1>エンジニア稼働管理画面　一覧</h1>
 <%= link_to "管理者画面",  users_path %>
-
-<h1>ユーザー検索</h1>
+<hr>
+<h4>検索機能</h4>
 <%= search_form_for @q, url: search_managements_path,
                     html: { method: :post } do |f| %>
-  <%= f.label :user_name_cont, 'ユーザー名' %>
+  <%= f.label :user_name_cont, 'Name' %>
   <%= f.search_field :user_name_cont %>
 
   <%= f.label :date_cont, '稼働月' %>
   <%= f.search_field :date_cont %>
+
+  <%= f.label :management_state_cont, '稼働ステータス' %>
+  <%= f.search_field :management_state_cont %>
   <br>
   <%= f.submit '検索' %>
 <% end %>
 
 <hr>
+<% case @user.role %>
+<% when 'general' %>
 <%= link_to "新規登録", new_management_path %>
-
+<% end  %>
 <table class="">
 <tbody>
 
 <tr>
-  <th>ステータス</th>
-  <th> <%= sort_link(@q, :name) do %>
+  <th>アカウントステータス</th>
+  <th> <%= sort_link(@q, :user_name) do %>
       <strong>Name</strong>
     <% end %></th>
-  <th>稼働月</th>
+
+  <th> <%= sort_link(@q, :date) do %>
+      <strong>稼働月</strong>
+    <% end %></th>
+
   <th>稼働時間</th>
 
   <th>単価</th>
   <th>単位</th>
+  <th>稼働ステータス</th>
   <th>ステータス変更</th>
 
 </tr>
@@ -37,7 +47,7 @@
     <tr>
     <td><%= m.user.account_state %></td>
     <td><%= m.user.name %></td>
-    <td><%= m.date %></td>
+    <td><%= m.date.strftime("%Y年%m月") %></td>
     <td><%= m.uptime %></td>
     <% if m.user.wage.present? %> 
       <td><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
@@ -46,7 +56,12 @@
     <td> 未設定です </td>
     <td> 未設定です </td>
     <% end %>
-    <td><%= link_to "活動<=>凍結", user_state_path(id:m.user_id)  %></td>
+      <td><%= m.management_state %></td>
+      <td>
+        <%= link_to "活動・休止", user_state_path(id:m.user_id) %>
+        　　
+        <%= link_to "承認", wage_state_path(id:m.id)  %>
+      </td>
 
     </tr>
 <% end %>

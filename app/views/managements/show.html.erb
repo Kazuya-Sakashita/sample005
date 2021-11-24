@@ -11,7 +11,7 @@
   <td>稼働時間</td>
   <td>単価</td>
   <td>単位</td>
-  <td>アクション</td>
+  <td>項目</td>
 </tr>
 
 <% @user_management.each do |m| %>
@@ -27,7 +27,13 @@
     <td> 設定されていません </td>
     <td> 設定されていません </td>
     <% end %>
-    <td><%= link_to "変更", edit_management_path(m.id)%></td>
+    <td>
+      <% case m.management_state %>
+      <% when 'request'  %>
+      <%= link_to "修正", edit_management_path(m.id)%></td>
+      <% else %>
+          承認済のため変更出来ません
+      <% end %>
     </tr>
 
 <% end %>
