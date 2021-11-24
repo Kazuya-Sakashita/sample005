@@ -9,6 +9,9 @@
 
   <%= f.label :date_cont, '稼働月' %>
   <%= f.search_field :date_cont %>
+
+  <%= f.label :management_state_cont, '稼働ステータス' %>
+  <%= f.search_field :management_state_cont %>
   <br>
   <%= f.submit '検索' %>
 <% end %>
@@ -38,7 +41,7 @@
     <tr>
     <td><%= m.user.account_state %></td>
     <td><%= m.user.name %></td>
-    <td><%= m.date %></td>
+    <td><%= m.date.strftime("%Y年%m月") %></td>
     <td><%= m.uptime %></td>
     <% if m.user.wage.present? %> 
       <td><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0 ) %></td>
