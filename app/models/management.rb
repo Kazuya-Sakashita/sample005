@@ -17,6 +17,5 @@ class Management < ApplicationRecord
     event :request do
       transitions from: :approval, to: :request
     end
-
   end
 end

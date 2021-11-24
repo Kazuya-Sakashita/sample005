@@ -17,8 +17,10 @@
 <% end %>
 
 <hr>
+<% case @user.role %>
+<% when 'general' %>
 <%= link_to "新規登録", new_management_path %>
-
+<% end  %>
 <table class="">
 <tbody>
 
