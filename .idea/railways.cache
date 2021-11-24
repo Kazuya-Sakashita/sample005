@@ -83,6 +83,7 @@
                                          PUT      /wages/:id(.:format)                                                                              wages#update
                                          DELETE   /wages/:id(.:format)                                                                              wages#destroy
                               user_state GET      /managements/:id/state(.:format)                                                                  managements#state
+                              wage_state GET      /managements/:id/wagestate(.:format)                                                              managements#wagestate
                                  patient GET      /patients/:id(.:format)                                                                           patients#show
            rails_postmark_inbound_emails POST     /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
               rails_relay_inbound_emails POST     /rails/action_mailbox/relay/inbound_emails(.:format)                                              action_mailbox/ingresses/relay/inbound_emails#create

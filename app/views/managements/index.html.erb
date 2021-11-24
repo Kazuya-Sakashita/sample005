@@ -20,7 +20,7 @@
 <tbody>
 
 <tr>
-  <th>ステータス</th>
+  <th>アカウントステータス</th>
   <th> <%= sort_link(@q, :name) do %>
       <strong>Name</strong>
     <% end %></th>
@@ -29,6 +29,7 @@
 
   <th>単価</th>
   <th>単位</th>
+  <th>稼働ステータス</th>
   <th>ステータス変更</th>
 
 </tr>
@@ -46,7 +47,12 @@
     <td> 未設定です </td>
     <td> 未設定です </td>
     <% end %>
-    <td><%= link_to "活動<=>凍結", user_state_path(id:m.user_id)  %></td>
+      <td><%= m.management_state %></td>
+      <td>
+        <%= link_to "活動・休止", user_state_path(id:m.user_id) %>
+        　　
+        <%= link_to "承認", wage_state_path(id:m.id)  %>
+      </td>
 
     </tr>
 <% end %>

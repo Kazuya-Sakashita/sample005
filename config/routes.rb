@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :wages
 
   get 'managements/:id/state', to: 'managements#state', as:'user_state'
+  get 'managements/:id/wagestate', to: 'managements#wagestate', as:'wage_state'
   get '/patients/:id', to: 'patients#show', as: 'patient'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

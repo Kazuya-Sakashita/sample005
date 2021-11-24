@@ -48,7 +48,24 @@ class ManagementsController < ApplicationController
       redirect_to managements_path
     when 'active'
       @user.sleep!
-      flash[:notice] = 'ステータスをsuspendedに変更しました！'
+      flash[:notice] = 'ステータスをsleepingに変更しました！'
+      redirect_to managements_path
+    else
+      render :index
+    end
+  end
+
+  def wagestate
+    @management = Management.find(params[:id])
+    case @management.management_state
+    when 'request'
+      @management.approval!
+      flash[:notice] = 'ステータスをapprovalに変更しました！'
+      redirect_to managements_path
+
+    when 'approval'
+      @management.request!
+      flash[:notice] = 'ステータスをrequestに変更しました！'
       redirect_to managements_path
     else
       render :index
