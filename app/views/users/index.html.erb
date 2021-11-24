@@ -16,11 +16,14 @@
   <%= link_to "報酬条件管理", wages_path %><br>
 </div>
 <hr>
+＊スキル・スキルレベルで検索ができるようにする
+<hr>
 <table>
   <thead>
   <tr>
     <th>Name</th>
     <th>Email</th>
+    <th>skill</th>
     <th>account_state</th>
   </tr>
   </thead>
@@ -33,6 +36,10 @@
       <td>
         <%= user.email %>
       </td>
+      <td> <% user.skill_managements.each do |skill| %>
+          <%= skill.skill.skill %> /
+          <%= skill.skill_level %>　　
+        <% end %></td>
 
       <td>
         <% if user.account_state == 'tentative' %>

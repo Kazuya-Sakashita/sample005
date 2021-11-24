@@ -27,7 +27,11 @@
   <th> <%= sort_link(@q, :user_name) do %>
       <strong>Name</strong>
     <% end %></th>
-  <th>稼働月</th>
+
+  <th> <%= sort_link(@q, :date) do %>
+      <strong>稼働月</strong>
+    <% end %></th>
+
   <th>稼働時間</th>
 
   <th>単価</th>
