@@ -1,10 +1,10 @@
 <h1>エンジニア稼働管理画面　一覧</h1>
 <%= link_to "管理者画面",  users_path %>
-
-<h1>ユーザー検索</h1>
+<hr>
+<h4>検索機能</h4>
 <%= search_form_for @q, url: search_managements_path,
                     html: { method: :post } do |f| %>
-  <%= f.label :user_name_cont, 'ユーザー名' %>
+  <%= f.label :user_name_cont, 'Name' %>
   <%= f.search_field :user_name_cont %>
 
   <%= f.label :date_cont, '稼働月' %>

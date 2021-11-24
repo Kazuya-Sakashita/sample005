@@ -2,18 +2,19 @@
 
 <% if current_user.present? %>
   <p>現在ログインしているユーザー:<%= current_user.email %></p>
-  <%= link_to 'Sign_out', destroy_user_session_path, method: :delete %>
+  <%= link_to 'ログオフ', destroy_user_session_path, method: :delete %>
 <% else %>
-  <%= link_to 'Sign_in', new_user_session_path %>
+  <%= link_to 'ログイン', new_user_session_path %>
 <% end %>
 <div>
-  <%= link_to 'エンジニア一覧', managements_path %>
+  <%= link_to 'エンジニア稼働管理画面', managements_path %>
+</div>
+
+<div>
+  <%= link_to "報酬条件管理（単価設定）", wages_path %><br>
 </div>
 <div>
   <%= link_to '案件一覧', projects_path %>
-</div>
-<div>
-  <%= link_to "報酬条件管理", wages_path %><br>
 </div>
 <hr>
 ＊スキル・スキルレベルで検索ができるようにする
