@@ -27,7 +27,13 @@
     <td> 設定されていません </td>
     <td> 設定されていません </td>
     <% end %>
-    <td><%= link_to "変更", edit_management_path(m.id)%></td>
+    <td>
+      <% case m.management_state %>
+      <% when 'request'  %>
+      <%= link_to "変更", edit_management_path(m.id)%></td>
+      <% else %>
+          承認済のため変更出来ません
+      <% end %>
     </tr>
 
 <% end %>

@@ -36,7 +36,7 @@
 
       <td>
         <% if user.account_state == 'tentative' %>
-          単価を設定してください
+          <%=link_to '単価を設定してください',new_wage_path %>
         <% else %>
           <%= user.account_state %>
         <% end %>
