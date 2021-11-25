@@ -50,6 +50,7 @@
                                          PATCH    /managements/:id(.:format)                                                                        managements#update
                                          PUT      /managements/:id(.:format)                                                                        managements#update
                                          DELETE   /managements/:id(.:format)                                                                        managements#destroy
+                            search_users GET|POST /users/search(.:format)                                                                           users#search
                                    users GET      /users(.:format)                                                                                  users#index
                                          POST     /users(.:format)                                                                                  users#create
                                 new_user GET      /users/new(.:format)                                                                              users#new
