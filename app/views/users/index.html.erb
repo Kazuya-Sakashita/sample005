@@ -24,6 +24,11 @@
                     html: { method: :post } do |f| %>
   <%= f.label :name_cont, 'Name' %>
   <%= f.search_field :name_cont %>
+
+  <%= f.label :skills_skill_cont, 'skill' %>
+  <%= f.search_field :skills_skill_cont %>
+  
+
   <br>
   <%= f.submit '検索' %>
 <% end %>
