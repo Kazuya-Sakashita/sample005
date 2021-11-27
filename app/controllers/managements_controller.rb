@@ -11,6 +11,7 @@ class ManagementsController < ApplicationController
       @user = current_user
       # @wage = Wage.find_by(id: current_user.id)
       @wages = Wage.all
+      authorize :management, :index?
     else
       redirect_to management_path(current_user.id)
       @user = current_user

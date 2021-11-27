@@ -24,8 +24,7 @@ class WagesController < ApplicationController
   def destroy
     @wage = Wage.find(params[:id])
     @user = current_user
-    authorize @user
-
+    authorize :wage, :destroy?
     if @wage.destroy
       redirect_to wages_path
     else
