@@ -1,10 +1,9 @@
 class WagesController < ApplicationController
   def index
-    @users = if current_user.admin?
-               # adminは全ユーザーを表示
-               @wages = Wage.all
-               @users = User.all
-             end
+    @wages = Wage.all.page(params[:page]).per(20)
+    @users = User.all
+    @user = current_user
+    authorize :wage, :index?
   end
 
   def edit
@@ -50,11 +49,13 @@ class WagesController < ApplicationController
     when 'tentative'
       @user.run!
       flash[:notice] = '単価登録しました'
+      @wage.save
+      redirect_to wages_path
+      @user = current_user
+      authorize @user
+    else
+      redirect_to wages_path
     end
-    @wage.save
-    redirect_to wages_path
-    @user = current_user
-    authorize @user
   end
 
   def wage_params

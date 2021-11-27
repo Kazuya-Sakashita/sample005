@@ -28,6 +28,7 @@ module Sample003
       controller_specs: false, #公式で非推奨のためoff
             view_specs: false, #Request/Systemで代替するのでoff
          routing_specs: false #使用頻度低いのでoff
-      end
+    end
+
   end
 end
