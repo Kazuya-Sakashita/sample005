@@ -20,7 +20,11 @@ Rails.application.routes.draw do
       match 'search' => 'managements#search', via: [:get, :post], as: :search
     end
   end
-  resources :users
+  resources :users do
+    collection do
+      match 'search' => 'users#search', via: [:get, :post], as: :search
+    end
+  end
   resources :clients
   resources :projects
   resources :wages

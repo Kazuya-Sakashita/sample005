@@ -1,18 +1,18 @@
 class UsersController < ApplicationController
-  before_action :pundit_auth
-  before_action :set_user, only: [:suspended, :show]
+  before_action :set_user, only: [:show]
+  before_action :set_q, only: [:index, :search]
 
   def index
-    @users = if current_user.admin?
-               @user = current_user
-               # adminは全ユーザーを表示
-               User.all.page(params[:page]).per(20)
-             else
-               # generalは、自分のを表示
-               redirect_to mypage_path(current_user.id)
-               @user = current_user
-               authorize @user
-             end
+    if current_user.admin?
+      @q = User.ransack(params[:q])
+      @users = @q.result.includes(:skills, :skill_managements).page(params[:page]).per(10)
+      @user = current_user
+
+    else
+      redirect_to mypage_path(current_user.id)
+      @user = current_user
+      authorize @user
+    end
   end
 
   def show
@@ -22,10 +22,15 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def search
+    index
+    render :index
+  end
+
   private
 
-  def pundit_auth
-    authorize User.new
+  def set_q
+    @q = User.ransack(params[:q])
   end
 
   def set_user

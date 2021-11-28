@@ -17,7 +17,24 @@
   <%= link_to '案件一覧', projects_path %>
 </div>
 <hr>
-＊スキル・スキルレベルで検索ができるようにする
+
+<h4>検索機能</h4>
+<%= search_form_for @q, url: search_users_path,
+                    html: { method: :post } do |f| %>
+  <%= f.label :name_cont, 'Name' %>
+  <%= f.search_field :name_cont %>
+
+  <%= f.label :skills_skill_cont, 'スキル' %>
+  <%= f.search_field :skills_skill_cont %>
+
+  #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
+  <%#= f.label :skill_level, 'スキルレベル' %>
+  <%#= f.search_field :skill_managements_skill_level_cont %>
+  
+
+  <br>
+  <%= f.submit '検索' %>
+<% end %>
 <hr>
 <table>
   <thead>
@@ -54,5 +71,6 @@
   <% end %>
   </tbody>
 </table>
-
+<hr>
 <%= paginate @users %>
+<hr>

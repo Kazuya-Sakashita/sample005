@@ -1,10 +1,8 @@
 class WagesController < ApplicationController
+  before_action :set_authority_admin
   def index
-    @users = if current_user.admin?
-               # adminは全ユーザーを表示
-               @wages = Wage.all
-               @users = User.all
-             end
+    @wages = Wage.all.page(params[:page]).per(20)
+    @users = User.all
   end
 
   def edit
@@ -18,15 +16,12 @@ class WagesController < ApplicationController
   end
 
   def show
-    @user = current_user
     @wage = Wage.where(user_id: current_user.id)
+
   end
 
   def destroy
     @wage = Wage.find(params[:id])
-    @user = current_user
-    authorize @user
-
     if @wage.destroy
       redirect_to wages_path
     else
@@ -40,6 +35,7 @@ class WagesController < ApplicationController
     @user_list = User.where.not(role: 1).select(:id).pluck(:id)
     @unregistered_users_id = @user_list - @wage_user
     @unregistered_users = User.where(id: @unregistered_users_id)
+
   end
 
   def create
@@ -50,14 +46,19 @@ class WagesController < ApplicationController
     when 'tentative'
       @user.run!
       flash[:notice] = '単価登録しました'
+      @wage.save
+      redirect_to wages_path
+    else
+      redirect_to wages_path
     end
-    @wage.save
-    redirect_to wages_path
-    @user = current_user
-    authorize @user
+
   end
 
   def wage_params
     params.require(:wage).permit(:user_id, :unit_price, :unit)
+  end
+
+  def set_authority_admin
+    authorize :wage
   end
 end

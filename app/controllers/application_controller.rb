@@ -23,4 +23,13 @@ class ApplicationController < ActionController::Base
                                         :unit
                                       ])
   end
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
+  private
+
+  def user_not_authorized
+    flash[:alert] = '権限がありません'
+    redirect_to(root_path)
+  end
 end

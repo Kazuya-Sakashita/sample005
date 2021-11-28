@@ -5,12 +5,13 @@ class ManagementsController < ApplicationController
 
   def index
     if current_user.admin?
-      @q = Management.ransack(params[:q])
+      # @q = Management.ransack(params[:q])
       # @user_managements = @q.result.page(params[:page]).per(10)
       @user_managements = @q.result.includes(:user, :wage).page(params[:page]).per(10)
       @user = current_user
       # @wage = Wage.find_by(id: current_user.id)
       @wages = Wage.all
+      authorize :management, :index?
     else
       redirect_to management_path(current_user.id)
       @user = current_user

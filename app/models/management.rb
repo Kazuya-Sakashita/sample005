@@ -6,7 +6,7 @@ class Management < ApplicationRecord
 
   # enum unit: { hours: 0, days: 1 }
 
-  aasm column: :management_state do
+  aasm column: :management_state, timestamps: true do
     state :request, initial: true # 申請
     state :approval # 承認
 

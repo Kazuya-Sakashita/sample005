@@ -4,6 +4,12 @@
 <%= link_to "管理者画面", users_path %><br>
 <%= link_to '報酬条件入力', new_wage_path %>
 
+
+<hr>
+＃namaでの検索を追加する
+
+<hr>
+
 <table class="">
 <tbody>
 <tr>
@@ -29,7 +35,10 @@
 </tbody>
 </table>
 
-
+<hr>
+ページネーション
+<%= paginate @wages %>
+<hr>
 <div>
 <%= link_to "Back", :back %>
 </div>

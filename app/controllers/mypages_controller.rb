@@ -6,12 +6,14 @@ class MypagesController < ApplicationController
   def index
     @user = current_user
     @wage = Wage.find_by(user_id: current_user.id)
+    authorize :user, :index?
   end
 
   def show
     @user = current_user
     @wage = Wage.find_by(user_id: current_user.id)
     # find_byで存在しない場合、エラーでなくnilを返す
+    authorize :user, :show?
   end
 
   def edit

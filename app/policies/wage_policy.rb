@@ -1,9 +1,6 @@
-# userpolicy.rbを下記の内容にて新規に作成
-# 基本的に全ての機能を許可。
-# ただしユーザー詳細は管理ユーザーのみ許可
-class UserPolicy < ApplicationPolicy
+class WagePolicy < ApplicationPolicy
   def index?
-    true
+    user.admin?
   end
 
   def show?
@@ -16,6 +13,7 @@ class UserPolicy < ApplicationPolicy
 
   def new?
     create?
+    user.admin?
   end
 
   def update?
@@ -24,7 +22,7 @@ class UserPolicy < ApplicationPolicy
 
   def edit?
     update?
-    user.admin? || user.general?
+    user.admin?
   end
 
   def destroy?

@@ -30,7 +30,7 @@ class User < ApplicationRecord
                     length: { minimum: 3, maximum: 30 }
   validates :name, length: { maximum: 50 }
 
-  aasm column: :account_state do
+  aasm column: :account_state, timestamps: true do
     state :tentative, initial: true # 単価設定前
     state :active # 通常状態
     state :sleeping # 休止
