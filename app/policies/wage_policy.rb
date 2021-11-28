@@ -22,7 +22,7 @@ class WagePolicy < ApplicationPolicy
 
   def edit?
     update?
-    user.admin? || user.general?
+    user.admin?
   end
 
   def destroy?
