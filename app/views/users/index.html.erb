@@ -1,21 +1,25 @@
 <div class="container mx-auto px-8">
-<h1>All users</h1>
+  <h1 class="text-4xl font-bold text-center">管理者画面</h1>
 
-<% if current_user.present? %>
-  <p>現在ログインしているユーザー:<%= current_user.email %></p>
-  <%= link_to 'ログオフ', destroy_user_session_path, method: :delete %>
-<% else %>
-  <%= link_to 'ログイン', new_user_session_path %>
-<% end %>
-<div>
-  <%= link_to 'エンジニア稼働管理画面', managements_path %>
-</div>
+  <div class="md:flex text-gray-500 ">
+    <% if current_user.present? %>
+      <p>現在ログインしているユーザー:<%= current_user.email %>さん　　</p>
+      <%= button_to 'ログオフ', destroy_user_session_path, method: :delete %>
+    <% else %>
+      <%= link_to 'ログイン', new_user_session_path %>
+    <% end %>
+  </div>
+  <div class="md:flex space-x-1 ">
+  <div>
+    <%= button_to 'エンジニア稼働管理画面', managements_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+  </div>
 
-<div>
-  <%= link_to "報酬条件管理（単価設定）", wages_path %><br>
-</div>
-<div>
-  <%= link_to '案件一覧', projects_path %>
+  <div>
+    <%= button_to "報酬条件管理（単価設定）", wages_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+  </div>
+  <div>
+    <%= button_to '案件一覧', projects_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+  </div>
 </div>
 <hr>
 
@@ -31,13 +35,13 @@
   #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
   <%#= f.label :skill_level, 'スキルレベル' %>
   <%#= f.search_field :skill_managements_skill_level_cont %>
-  
+
 
   <br>
   <%= f.submit '検索' %>
 <% end %>
 <hr>
-<table >
+<table>
   <thead>
   <tr>
     <th>Name</th>
@@ -55,14 +59,15 @@
       <td>
         <%= user.email %>
       </td>
-      <td> <% user.skill_managements.each do |skill| %>
+      <td>
+        <% user.skill_managements.each do |skill| %>
           <%= skill.skill.skill %> /
           <%= skill.skill_level %>　　
         <% end %></td>
 
       <td>
         <% if user.account_state == 'tentative' %>
-          <%=link_to '単価を設定してください',new_wage_path %>
+          <%= link_to '単価を設定してください', new_wage_path %>
         <% else %>
           <%= user.account_state %>
         <% end %>
