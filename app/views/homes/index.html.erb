@@ -1,13 +1,18 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+  <div class="px-8 py-6 mt-4 text-left bg-white shadow-lg">
+    <h1 class="text-2xl font-bold text-center">稼働管理　ログイン画面</h1>
 
-<h1>稼働管理　ログイン画面</h1>
+    <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+      <!-- ユーザーがログインしていた時の処理 -->
 
-<% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-  <!-- ユーザーがログインしていた時の処理 -->
-
-  <h4> メールアドレス： <%= current_user.email %> </h4>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
-<% else %>
-  <!-- ユーザーがログインしていなかった時の処理 -->
-  <%= link_to "ログイン", new_user_session_path, class: 'post' %> <!-- ログイン画面に移行する -->
-  <%= link_to "新規登録", new_user_registration_path, class: 'post' %> <!-- 新規登録画面に移行する -->
-<% end %>
+      <h4> メールアドレス： <%= current_user.email %> </h4>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %> <!-- ログアウトをする -->
+    <% else %>
+      <!-- ユーザーがログインしていなかった時の処理 -->
+      <div class="md:flex md:justify-around">
+        <%= button_to "ログイン", new_user_session_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 md:border-none border-b" %> <!-- ログイン画面に移行する -->
+        <%= button_to "新規登録", new_user_registration_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 md:border-none border-b" %> <!-- 新規登録画面に移行する -->
+      </div>
+    <% end %>
+  </div>
+</div>
