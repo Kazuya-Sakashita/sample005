@@ -10,74 +10,75 @@
     <% end %>
   </div>
   <div class="md:flex space-x-1 ">
-  <div>
-    <%= button_to 'エンジニア稼働管理画面', managements_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+    <div>
+      <%= button_to 'エンジニア稼働管理画面', managements_path, { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %>
+    </div>
+
+    <div>
+      <%= button_to "報酬条件管理（単価設定）", wages_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+    </div>
+    <div>
+      <%= button_to '案件一覧', projects_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+    </div>
   </div>
+  <hr>
+  <div class="bg-blue-50">
+    <h4>検索機能</h4>
+    <%= search_form_for @q, url: search_users_path,
+                        html: { method: :post } do |f| %>
+      <%= f.label :name_cont, 'Name' %>
+      <%= f.search_field :name_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Name" %>
 
-  <div>
-    <%= button_to "報酬条件管理（単価設定）", wages_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+      <%= f.label :skills_skill_cont, 'スキル' %>
+      <%= f.search_field :skills_skill_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "PHPなど" %>
+
+      #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
+      <%#= f.label :skill_level, 'スキルレベル' %>
+      <%#= f.search_field :skill_managements_skill_level_cont %>
+
+
+      <br>
+      <%= f.submit '検索' %>
+    <% end %>
   </div>
-  <div>
-    <%= button_to '案件一覧', projects_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
-  </div>
-</div>
-<hr>
-
-<h4>検索機能</h4>
-<%= search_form_for @q, url: search_users_path,
-                    html: { method: :post } do |f| %>
-  <%= f.label :name_cont, 'Name' %>
-  <%= f.search_field :name_cont %>
-
-  <%= f.label :skills_skill_cont, 'スキル' %>
-  <%= f.search_field :skills_skill_cont %>
-
-  #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
-  <%#= f.label :skill_level, 'スキルレベル' %>
-  <%#= f.search_field :skill_managements_skill_level_cont %>
-
-
-  <br>
-  <%= f.submit '検索' %>
-<% end %>
-<hr>
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Email</th>
-    <th>skill</th>
-    <th>account_state</th>
-  </tr>
-  </thead>
-  <tbody class="users">
-  <% @users.each do |user| %>
+  <hr><br>
+  <table class="border-separate border border-blue-800">
+    <thead>
     <tr>
-      <td>
-        <%= user.name %>
-      </td>
-      <td>
-        <%= user.email %>
-      </td>
-      <td>
-        <% user.skill_managements.each do |skill| %>
-          <%= skill.skill.skill %> /
-          <%= skill.skill_level %>　　
-        <% end %></td>
-
-      <td>
-        <% if user.account_state == 'tentative' %>
-          <%= link_to '単価を設定してください', new_wage_path %>
-        <% else %>
-          <%= user.account_state %>
-        <% end %>
-      </td>
+      <th class="border border-blue-600">Name</>
+      <th class="border border-blue-600">Email</th>
+      <th class="border border-blue-600">skill</th>
+      <th class="border border-blue-600">account_state</th>
     </tr>
+    </thead>
+    <tbody class="users">
+    <% @users.each do |user| %>
+      <tr>
+        <td class="border border-blue-600">
+          <%= user.name %>
+        </td>
+        <td class="border border-blue-600">
+          <%= user.email %>
+        </td>
+        <td class="border border-blue-600">
+          <% user.skill_managements.each do |skill| %>
+            <%= skill.skill.skill %> /
+            <%= skill.skill_level %>　　
+          <% end %></td>
 
-  <% end %>
-  </tbody>
-</table>
-<hr>
-<%= paginate @users %>
-<hr>
+        <td class="border border-blue-600">
+          <% if user.account_state == 'tentative' %>
+            <%= link_to '単価を設定してください', new_wage_path %>
+          <% else %>
+            <%= user.account_state %>
+          <% end %>
+        </td>
+      </tr>
+
+    <% end %>
+    </tbody>
+  </table>
+  <hr>
+  <%= paginate @users %>
+  <hr>
 </div>
