@@ -10,8 +10,8 @@
     <% else %>
       <!-- ユーザーがログインしていなかった時の処理 -->
       <div class="md:flex md:justify-around">
-        <%= button_to "ログイン", new_user_session_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 md:border-none border-b" %> <!-- ログイン画面に移行する -->
-        <%= button_to "新規登録", new_user_registration_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 md:border-none border-b" %> <!-- 新規登録画面に移行する -->
+        <%= button_to "ログイン", new_user_session_path, class: "px-6 py-2 mt-4 text-white bg-blue-300 rounded-lg hover:bg-blue-900 md:border-none border-b" %> <!-- ログイン画面に移行する -->
+        <%= button_to "新規登録", new_user_registration_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-300 rounded-lg hover:bg-blue-900 md:border-none border-b" %> <!-- 新規登録画面に移行する -->
       </div>
     <% end %>
   </div>

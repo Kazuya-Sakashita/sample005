@@ -1,36 +1,44 @@
-<h1><p>基本情報編集 </h1>
-<%= link_to "マイページ", mypage_path(current_user.id) %>
+<div class="container mx-auto px-8">
+  <h1 class="text-4xl font-bold ">基本情報編集</h1>
+  <div class="md:flex text-gray-500">
 
-<h2>Edit </h2>
-<%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-    <!--アカウント編集時に名前を入力できるようにフォームを追加-->
-    <div class="field">
-      <%= f.label :name %><br />
-      <%= f.text_field :name, autofocus: true %>
-    </div>  
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>  
-    <!--アカウント編集時にプロフィールを入力できるようにフォームを追加-->
-    <div class="field">
-      <%= f.label :phone_number %><br />
-      <%= f.text_field :phone_number, autofocus: true %>
-    </div>
-
-    <div class="field">
-    <%= f.label :github_url %><br />
-    <%= f.text_field :github_url, autofocus: true %>
-    </div>
-    <div class="field">
-    <%= f.label :account_info %><br />
-    <%= f.text_field :account_info, autofocus: true %>
-    </div>
-
-
-  <div class="actions">
-    <%= f.submit "更新", data: { confirm: '上記の内容で投稿を更新します。よろしいですか？' } %>
+    <%= button_to "基本情報管理画面", mypage_path(current_user.id),{ method: :get,class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900"} %>
   </div>
-<% end %>
+  <div class="py-4">
+    <h2>下記フォームから変更ができます。</h2>
+    <hr>
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'class="grid grid-cols-1 gap-6 m-16"', local: true do |f| %>
+      <!--アカウント編集時に名前を入力できるようにフォームを追加-->
+      <div class="pt-5">
+        <%= f.label :name, class: "block" %>
+        <%= f.text_field :name, autofocus: true, class: "w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" %>
+      </div>
+      <div class="pt-5">
+        <%= f.label :email, class: "text-sm block" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" %>
+      </div>
+      <!--アカウント編集時にプロフィールを入力できるようにフォームを追加-->
+      <div class="pt-5">
+        <%= f.label :phone_number, class: "text-sm block" %>
+        <%= f.text_field :phone_number, autofocus: true, class: "w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" %>
+      </div>
 
-<%= link_to "Back", :back %>
+      <div class="pt-5">
+        <%= f.label :github_url, class: "text-sm block" %>
+        <%= f.text_field :github_url, autofocus: true, class: "w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" %>
+      </div>
+      <div class="pt-5">
+        <%= f.label :account_info, class: "text-sm block" %>
+        <%= f.text_field :account_info, autofocus: true, class: "w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" %>
+      </div>
+
+
+      <div class="actions">
+        <%= f.submit "更新", data: { confirm: '上記の内容で投稿を更新します。よろしいですか？' }, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+      </div>
+    <% end %>
+    <hr>
+  </div>
+  <%= link_to "Back", :back %>
+
+</div>
