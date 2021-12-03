@@ -31,42 +31,39 @@
 
       <%= f.label :skills_skill_cont, 'スキル' %>
       <%= f.search_field :skills_skill_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "PHPなど" %>
-
+      <%= f.submit '検索',class: "px-4 py-2 mt-2 text-black rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+    <% end %>
       #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
       <%#= f.label :skill_level, 'スキルレベル' %>
       <%#= f.search_field :skill_managements_skill_level_cont %>
-
-
       <br>
-      <%= f.submit '検索' %>
-    <% end %>
   </div>
   <hr><br>
   <table class="border-separate border border-blue-800">
     <thead>
     <tr>
-      <th class="border border-blue-600">Name</>
-      <th class="border border-blue-600">Email</th>
-      <th class="border border-blue-600">skill</th>
-      <th class="border border-blue-600">account_state</th>
+      <th class="border border-blue-400">Name</>
+      <th class="border border-blue-400">Email</th>
+      <th class="border border-blue-400">skill</th>
+      <th class="border border-blue-400">account_state</th>
     </tr>
     </thead>
     <tbody class="users">
     <% @users.each do |user| %>
       <tr>
-        <td class="border border-blue-600">
+        <td class="border border-blue-400">
           <%= user.name %>
         </td>
-        <td class="border border-blue-600">
+        <td class="border border-blue-400">
           <%= user.email %>
         </td>
-        <td class="border border-blue-600">
+        <td class="border border-blue-400">
           <% user.skill_managements.each do |skill| %>
             <%= skill.skill.skill %> /
             <%= skill.skill_level %>　　
           <% end %></td>
 
-        <td class="border border-blue-600">
+        <td class="border border-blue-400">
           <% if user.account_state == 'tentative' %>
             <%= link_to '単価を設定してください', new_wage_path %>
           <% else %>
