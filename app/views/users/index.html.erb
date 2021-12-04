@@ -22,7 +22,7 @@
     </div>
   </div>
   <hr>
-  <div class="bg-blue-50">
+  <div class="m-2 pt-2 bg-blue-50">
     <h4>検索機能</h4>
     <%= search_form_for @q, url: search_users_path,
                         html: { method: :post } do |f| %>
@@ -42,7 +42,7 @@
   <table class="border-separate border border-blue-800">
     <thead>
     <tr>
-      <th class="border border-blue-400">Name</>
+      <th class="border border-blue-400">Name</th>
       <th class="border border-blue-400">Email</th>
       <th class="border border-blue-400">skill</th>
       <th class="border border-blue-400">account_state</th>
