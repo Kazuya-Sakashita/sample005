@@ -1,27 +1,33 @@
-<h1>Skill一覧</h1>
-<%= link_to "マイページ", mypage_path(current_user.id) %>
-<hr>
+<div class="container mx-auto px-8">
+  <h1 class="text-4xl font-bold ">登録Skill一覧</h1>
 
+  <%= link_to "基本情報管理画面にもどる", mypage_path(current_user.id),class:"m-2 bg-gray-200 hover:bg-gray-900 hover:text-white" %>
+  <hr>
 
-<%= link_to "スキル追加", new_skill_management_path %><br>
+  <div class="py-4">
+  <%= button_to "スキル追加", new_skill_management_path, { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %><br>
 
-
-
-<table class="">
-<tbody>
-<tr>
-  <td>スキル</td>
-  <td>スキルレベル</td>
-  <td></td>
-</tr>
-
-<% @personal_skill.each do |s| %>
+  <table class="border-separate border border-blue-800">
+    <tbody>
     <tr>
-    <td><%= s.skill.skill %></td>
-    <td><%= s.skill_level %></td>
-    <td> <%= link_to "編集", edit_skill_management_path(id: s.id) %>
-         <%= link_to "削除", skill_management_path(id: s.id), method: :delete , data: {confirm: "削除しますか？"}%></td>
+      <td class="border border-blue-400">スキル</td>
+      <td class="border border-blue-400">スキルレベル</td>
+      <td class="border border-blue-400">編集</td>
     </tr>
-<% end %>
-</tbody>
-</table>
+
+    <% @personal_skill.each do |s| %>
+      <tr>
+        <td class="border border-blue-400"><%= s.skill.skill %></td>
+        <td class="border border-blue-400"><%= s.skill_level %></td>
+        <td class="border border-blue-400">
+          <div class="md:flex space-x-2 ">
+          <%= button_to "編集", edit_skill_management_path(id: s.id), method: :get, class: "px-2 py-2 mt-2 text-black bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900 hover:text-white" %>
+          <%= button_to "削除", skill_management_path(id: s.id), method: :delete, data: { confirm: "削除しますか？" },class: "px-2 py-2 mt-2 text-black bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900 hover:text-white" %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  </div>
+</div>
