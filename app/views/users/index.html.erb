@@ -1,5 +1,5 @@
 <div class="container mx-auto px-8">
-  <h1 class="text-4xl font-bold text-center">管理者画面</h1>
+  <h1 class="text-4xl text-indigo-500 font-bold text-center">管理者画面</h1>
 
   <div class="md:flex text-gray-500">
     <% if current_user.present? %>
@@ -13,17 +13,17 @@
   </div>
   <div class="md:flex space-x-1 ">
     <div>
-      <%= button_to 'エンジニア稼働管理画面', managements_path, { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %>
+      <%= link_to 'エンジニア稼働管理画面', managements_path, class:"inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"  %>
     </div>
 
     <div>
-      <%= button_to "報酬条件管理（単価設定）", wages_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+      <%= link_to "報酬条件管理（単価設定）", wages_path, class:"inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
     </div>
     <div>
-      <%= button_to '案件一覧', projects_path, method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+      <%= link_to '案件一覧', projects_path, class:"inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
     </div>
   </div>
-  <hr>
+
   <div class="m-2 pt-2 bg-blue-50">
     <h4>検索機能</h4>
     <%= search_form_for @q, url: search_users_path,
@@ -40,7 +40,7 @@
     <%#= f.search_field :skill_managements_skill_level_cont %>
     <br>
   </div>
-  <hr>
+
   <br>
   <table class="border-separate border border-blue-800">
     <thead>
