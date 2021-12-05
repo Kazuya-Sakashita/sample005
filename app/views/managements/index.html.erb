@@ -1,9 +1,9 @@
 <div class="container mx-auto px-8">
   <h1 class="text-4xl font-bold text-center">エンジニア稼働管理画面　一覧</h1>
 
-  <%= button_to "管理者画面", users_path, { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %>
+  <%= link_to "管理者画面", users_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
   <hr>
-  <div class="bg-blue-50">
+  <div class="my-10　bg-blue-50">
   <h4>検索機能</h4>
   <%= search_form_for @q, url: search_managements_path,
                       html: { method: :post } do |f| %>

@@ -5,9 +5,9 @@
   <hr>
 
   <div class="py-4">
-  <%= button_to "スキル追加", new_skill_management_path, { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %><br>
+  <%= link_to "スキル追加", new_skill_management_path, class: "px-6 py-2 mt-4 border-2 text-white bg-blue-600 rounded-lg bg-opacity-70 hover:bg-blue-900" %><br>
 
-  <table class="border-separate border border-blue-800">
+  <table class="my-4 border-separate border border-blue-800">
     <tbody>
     <tr>
       <td class="border border-blue-400">スキル</td>
@@ -21,8 +21,8 @@
         <td class="border border-blue-400"><%= s.skill_level %></td>
         <td class="border border-blue-400">
           <div class="md:flex space-x-2 ">
-          <%= button_to "編集", edit_skill_management_path(id: s.id), method: :get, class: "px-2 py-2 mt-2 text-black bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900 hover:text-white" %>
-          <%= button_to "削除", skill_management_path(id: s.id), method: :delete, data: { confirm: "削除しますか？" },class: "px-2 py-2 mt-2 text-black bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900 hover:text-white" %>
+          <%= link_to "編集", edit_skill_management_path(id: s.id), class: "px-6 py-2 mt-4 border-2 text-gray-500 bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900 hover:text-white" %>
+          <%= link_to "削除", skill_management_path(id: s.id), method: :delete, data: { confirm: "削除しますか？" },class: "px-6 py-2 mt-4 border-2 text-gray-500 bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900 hover:text-white" %>
           </div>
         </td>
       </tr>

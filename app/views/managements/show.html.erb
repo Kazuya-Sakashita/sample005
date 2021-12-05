@@ -2,12 +2,11 @@
   <h1 class="text-4xl font-bold text-center">稼働管理画面　一覧</h1>
 
 
-  <%= link_to "基本情報管理画面にもどる", mypage_path(current_user.id) %>
-
-  <hr>
   <div class="py-4">
-    <%= button_to "稼働新規登録", new_management_path, { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %>
-    <table class="">
+    <%= link_to "稼働新規登録", new_management_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900"  %>
+    <%= link_to "基本情報管理画面に戻る", management_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900"  %>
+
+    <table class="mt-4">
       <tbody>
 
       <tr>
@@ -15,7 +14,7 @@
         <td>稼働時間</td>
         <td>単価</td>
         <td>単位</td>
-        <td>項目</td>
+        <td>スターテス</td>
       </tr>
 
       <% @user_management.each do |m| %>
@@ -44,8 +43,8 @@
       </tbody>
     </table>
   </div>
-  <hr>
+
   <div>
-    <%= link_to "Back", :back %>
+    <%= link_to "Back", :back, class: "mt-4" %>
   </div>
 </div>

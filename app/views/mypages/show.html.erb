@@ -2,19 +2,21 @@
   <h1 class="text-4xl font-bold ">基本情報管理画面</h1>
   <div class="md:flex text-gray-500">
     <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+      <div class="md:flex flex-auto ">
       <p class="place-self-center"> メールアドレス： <%= current_user.email %> </p>
-      <%= button_to "ログアウト", destroy_user_session_path, method: :delete, class: "m-2 px-2 py-2 mt-1 text-white bg-gray-400 rounded-lg bg-opacity-50 hover:bg-blue-600" %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "m-2 px-2 py-2 mt-1 text-white bg-gray-400 rounded-lg bg-opacity-50 hover:bg-blue-600" %>
     <% end %>
+    </div>
   </div>
   <br>
   <div class="md:flex space-x-1 ">
-    <div><%= button_to "1.基本情報", edit_mypage_path(current_user.id), { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %></div>
-    <div><%= button_to "2.基本情報SKILL", skill_managements_path, { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %></div>
-    <div><%= button_to "3.稼働管理", managements_path, { method: :get, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" } %></div>
+    <div><%= link_to "1.基本情報", edit_mypage_path(current_user.id), class: "px-6 py-2 mt-4 border-2 text-white bg-blue-600 rounded-lg bg-opacity-70 hover:bg-blue-900" %></div>
+    <div><%= link_to "2.基本情報SKILL", skill_managements_path, class: "px-6 py-2 mt-4 border-2 text-white bg-blue-600 rounded-lg bg-opacity-70 hover:bg-blue-900" %></div>
+    <div><%= link_to "3.稼働管理", managements_path, class: "px-6 py-2 mt-4 border-2 text-white bg-blue-600 rounded-lg bg-opacity-70 hover:bg-blue-900" %></div>
   </div>
-  <hr>
+
   <div>
-    <div class="p-2">
+    <div class="py-4">
       <h2>登録情報</h2>
       <div class="profile-view">
         <table class="border-separate border border-blue-800">

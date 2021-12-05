@@ -6,12 +6,12 @@
       <%= render "users/shared/error_messages", resource: resource %>
 
       <div class="mt-4">
-        <%= f.label :email %><br/>
+        <%= f.label :email, class:"text-lg font-semibold" %><br/>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Email" %>
       </div>
 
       <div class="mt-4">
-        <%= f.label :password %>
+        <%= f.label :password, class:"text-lg font-semibold" %>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
         <% end %><br/>
@@ -19,7 +19,7 @@
       </div>
 
       <div class="mt-4">
-        <%= f.label :password_confirmation %><br/>
+        <%= f.label :password_confirmation, class:"text-lg font-semibold" %><br/>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Password" %>
       </div>
       <div class="md:flex md:justify-around">

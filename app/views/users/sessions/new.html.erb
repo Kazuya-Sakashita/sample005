@@ -4,12 +4,12 @@
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="mt-4">
-        <%= f.label :email, class: "block" %>
+        <%= f.label :email, class:"text-lg font-semibold" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Email" %>
       </div>
 
       <div class="mt-4">
-        <%= f.label :password, class: "block" %>
+        <%= f.label :password, class:"text-lg font-semibold" %>
         <%= f.password_field :password, autocomplete: "current-password", class: "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Password" %>
       </div>
 

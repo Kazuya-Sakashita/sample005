@@ -3,11 +3,13 @@
 
   <div class="md:flex text-gray-500">
     <% if current_user.present? %>
-      <p>現在ログインしているユーザー:<%= current_user.email %>さん　　</p>
-      <%= button_to 'ログオフ', destroy_user_session_path, method: :delete %>
+      <div class="md:flex flex-auto">
+        <p class="place-self-center">現在ログインしているユーザー:<%= current_user.email %>さん　　</p>
+        <%= link_to 'ログオフ', destroy_user_session_path, method: :delete, class: "px-6 py-2 mt-4 text-white bg-gray-600 rounded-lg bg-opacity-50 hover:bg-gray-100 hover:text-black" %>
     <% else %>
       <%= link_to 'ログイン', new_user_session_path %>
     <% end %>
+    </div>
   </div>
   <div class="md:flex space-x-1 ">
     <div>
@@ -31,14 +33,15 @@
 
       <%= f.label :skills_skill_cont, 'スキル' %>
       <%= f.search_field :skills_skill_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "PHPなど" %>
-      <%= f.submit '検索',class: "px-4 py-2 mt-2 text-black rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+      <%= f.submit '検索', class: "px-4 py-2 mt-2 text-black rounded-lg bg-opacity-50 hover:bg-blue-900" %>
     <% end %>
-      #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
-      <%#= f.label :skill_level, 'スキルレベル' %>
-      <%#= f.search_field :skill_managements_skill_level_cont %>
-      <br>
+    #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
+    <%#= f.label :skill_level, 'スキルレベル' %>
+    <%#= f.search_field :skill_managements_skill_level_cont %>
+    <br>
   </div>
-  <hr><br>
+  <hr>
+  <br>
   <table class="border-separate border border-blue-800">
     <thead>
     <tr>

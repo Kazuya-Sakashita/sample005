@@ -3,15 +3,17 @@
 
   <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
     <div class="md:flex text-gray-500">
-    <h4 class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900"> メールアドレス： <%= current_user.email %> </h4>
-    <%= button_to "ログアウト", destroy_user_session_path, method: :delete,class: "px-4 py-2 mt-2 text-black rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+      <h4 class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900">
+        メールアドレス： <%= current_user.email %> </h4>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "px-4 py-2 mt-2 text-black rounded-lg bg-opacity-50 hover:bg-blue-900" %>
   <% end %>
   </div>
   <br>
-
-  <li><%= link_to "基本情報", edit_mypage_path(current_user.id) %></li>
-  <li><%= link_to "基本情報SKILL", skill_managements_path %></li>
-  <li><%= link_to "稼働管理", managements_path %></li>
+  <div>
+    <%= link_to "基本情報", edit_mypage_path(current_user.id), class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+    <%= link_to "基本情報SKILL", skill_managements_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+    <%= link_to "稼働管理", managements_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+  </div>
   <hr>
   <div>
     <h2>登録情報</h2>
@@ -19,19 +21,19 @@
       <table class="border-separate border border-blue-800">
         <tbody>
         <tr>
-          <th>メールアドレス:</th>
-          <td> <%= @user.email %></td>
+          <th class="border border-blue-400">メールアドレス:</th>
+          <td class="border border-blue-400"> <%= @user.email %></td>
         </tr>
         <tr>
           <th class="border border-blue-400">氏名:</th>
-          <td><%= @user.name %></td>
+          <td class="border border-blue-400"><%= @user.name %></td>
         </tr>
         <tr>
           <th class="border border-blue-400">電話番号:</th>
           <td class="border border-blue-400"><%= @user.phone_number %></td>
         </tr>
         <tr>
-          <th>スキル:</th>
+          <th class="border border-blue-400">スキル:</th>
           <td class="border border-blue-400">
             <% @user.skill_managements.each do |skill| %>
               <%= skill.skill.skill %> /
