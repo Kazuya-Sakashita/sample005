@@ -1,8 +1,9 @@
 <div class="container mx-auto px-8">
   <h1 class=" text-4xl font-bold"><p>稼働状況入力画面</h1>
-  <h2>新規登録 </h2>
+  <%= link_to "稼働管理一覧に戻る", managements_path, class: "px- py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
 
-  <%= link_to "稼働管理一覧", managements_path, class: "px- py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+
+  <h2>新規登録 </h2>
 
   <div>
     <%= form_with model: @management, url: managements_path, id: 'new_management', class: 'new_management', local: true do |f| %>

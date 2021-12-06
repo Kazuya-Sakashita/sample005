@@ -1,84 +1,111 @@
-<div class="container mx-auto px-8">
-  <h1 class="text-4xl text-indigo-500 font-bold text-center">管理者画面</h1>
+<div class="h-screen overflow-hidden flex >
+  <div class=" container mx-auto p-6 font-mono">
+    <div class="md:flex max-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+  <div class="px-5 py-4 border-b border-gray-100">
+    <h1 class="md:text-lg xl:text-xl font-semibold text-indigo-500">管理者画面</h1>
 
-  <div class="md:flex text-gray-500">
-    <% if current_user.present? %>
-      <div class="md:flex flex-auto">
-        <p class="place-self-center">現在ログインしているユーザー:<%= current_user.email %>さん　　</p>
-        <%= link_to 'ログオフ', destroy_user_session_path, method: :delete, class: "px-6 py-2 mt-4 text-white bg-gray-600 rounded-lg bg-opacity-50 hover:bg-gray-100 hover:text-black" %>
-    <% else %>
-      <%= link_to 'ログイン', new_user_session_path %>
-    <% end %>
+    <div class="md:flex text-gray-500">
+      <% if current_user.present? %>
+        <div class="md:flex flex-auto">
+          <p class="place-self-center">現在ログインしているユーザー:<%= current_user.email %>さん　　</p>
+          <p><%= link_to 'ログオフ', destroy_user_session_path, method: :delete, class: "inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-3 py-3 hover:text-white" %>
+      <% else %>
+        <%= link_to 'ログイン', new_user_session_path %>
+      <% end %></p>
+      </div>
     </div>
-  </div>
-  <div class="md:flex space-x-1 ">
-    <div>
-      <%= link_to 'エンジニア稼働管理画面', managements_path, class:"inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3"  %>
+    <div class="md:flex space-x-1 mt-6">
+      <div>
+        <%= link_to 'エンジニア稼働管理画面', managements_path, class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
+      </div>
+
+      <div>
+        <%= link_to "報酬条件管理（単価設定）", wages_path, class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
+      </div>
+      <div>
+        <%= link_to '案件一覧', projects_path, class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
+      </div>
     </div>
 
-    <div>
-      <%= link_to "報酬条件管理（単価設定）", wages_path, class:"inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
-    </div>
-    <div>
-      <%= link_to '案件一覧', projects_path, class:"inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
-    </div>
-  </div>
+    <div class="m-2 pt-2 ">
+      <h4>検索機能</h4>
+      <%= search_form_for @q, url: search_users_path,
+                          html: { method: :post } do |f| %>
+        <%= f.label :name_cont, 'Name' %>
+        <%= f.search_field :name_cont, class: "md:w-auto px-4 py-2 mt-2 rounded-full border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Name" %>
 
-  <div class="m-2 pt-2 bg-blue-50">
-    <h4>検索機能</h4>
-    <%= search_form_for @q, url: search_users_path,
-                        html: { method: :post } do |f| %>
-      <%= f.label :name_cont, 'Name' %>
-      <%= f.search_field :name_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Name" %>
+        <%= f.label :skills_skill_cont, 'スキル' %>
+        <%= f.search_field :skills_skill_cont, class: "md:w-auto px-4 py-2 mt-2 rounded-full border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "スキル、例）PHPなど" %>
+        <%= f.submit '検索', class: "ml-1 outline-none focus:outline-none active:outline-none" %>
+      <% end %>
+      #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
+      <%#= f.label :skill_level, 'スキルレベル' %>
+      <%#= f.search_field :skill_managements_skill_level_cont %>
+      <br>
+    </div>
 
-      <%= f.label :skills_skill_cont, 'スキル' %>
-      <%= f.search_field :skills_skill_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "PHPなど" %>
-      <%= f.submit '検索', class: "px-4 py-2 mt-2 text-black rounded-lg bg-opacity-50 hover:bg-blue-900" %>
-    <% end %>
-    #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
-    <%#= f.label :skill_level, 'スキルレベル' %>
-    <%#= f.search_field :skill_managements_skill_level_cont %>
+
     <br>
-  </div>
-
-  <br>
-  <table class="border-separate border border-blue-800">
-    <thead>
-    <tr>
-      <th class="border border-blue-400">Name</th>
-      <th class="border border-blue-400">Email</th>
-      <th class="border border-blue-400">skill</th>
-      <th class="border border-blue-400">account_state</th>
-    </tr>
-    </thead>
-    <tbody class="users">
-    <% @users.each do |user| %>
-      <tr>
-        <td class="border border-blue-400">
-          <%= user.name %>
-        </td>
-        <td class="border border-blue-400">
-          <%= user.email %>
-        </td>
-        <td class="border border-blue-400">
-          <% user.skill_managements.each do |skill| %>
-            <%= skill.skill.skill %> /
-            <%= skill.skill_level %>　　
-          <% end %></td>
-
-        <td class="border border-blue-400">
-          <% if user.account_state == 'tentative' %>
-            <%= link_to '単価を設定してください', new_wage_path %>
-          <% else %>
-            <%= user.account_state %>
-          <% end %>
-        </td>
+    <table class="table-auto w-full ">
+      <thead>
+      <tr class="bg-blue-500  bg-opacity-20">
+        <th class="w-1/4 p-2 whitespace-nowrap">
+          <div class="font-semibold text-left ">Name</div>
+        </th>
+        <th class="w-1/4 p-2 whitespace-nowrap">
+          <div class="font-semibold text-left">Email</div>
+        </th>
+        <th class="w-1/4 p-2 whitespace-nowrap">
+          <div class="font-semibold text-left">skill</div>
+        </th>
+        <th class="w-1/4 p-2 whitespace-nowrap">
+          <div class="font-semibold text-left">account_state</div>
+        </th>
       </tr>
+      </thead>
+      <tbody class="text-sm divide-y divide-gray-100">
+      <% @users.each do |user| %>
+        <tr>
 
-    <% end %>
-    </tbody>
-  </table>
-  <hr>
-  <%= paginate @users %>
-  <hr>
+          <td class="p-2 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="font-medium text-gray-800"><%= user.name %></div>
+            </div>
+          </td>
+          <td class="p-2 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="font-medium text-gray-800"><%= user.email %></div>
+            </div>
+          </td>
+          <td class="p-2 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="font-medium text-gray-800">
+                <% user.skill_managements.each do |skill| %>
+                  <%= skill.skill.skill %> /
+                  <%= skill.skill_level %>　　
+                <% end %>
+              </div>
+            </div>
+          </td>
+          <td class="p-2 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="font-medium text-gray-800">
+                <% if user.account_state == 'tentative' %>
+                  <%= link_to '単価を設定してください', new_wage_path %>
+                <% else %>
+                  <%= user.account_state %>
+                <% end %>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      <% end %>
+      </tbody>
+    </table>
+    <hr>
+    <%= paginate @users %>
+    <hr>
+  </div>
 </div>
+

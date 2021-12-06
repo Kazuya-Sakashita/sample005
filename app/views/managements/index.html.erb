@@ -1,83 +1,86 @@
-<div class="container mx-auto px-8">
-  <h1 class="text-4xl font-bold text-center">エンジニア稼働管理画面　一覧</h1>
+<div class="h-screen overflow-hidden flex">
+  <div class="container mx-auto p-6 font-mono">
+    <div class="md:flex max-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+      <div class="px-5 py-4 border-b border-gray-100">
+        <div class="container mx-auto px-8">
+          <h1 class="text-4xl font-bold text-center">エンジニア稼働管理画面　一覧</h1>
 
-  <%= link_to "管理者画面", users_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
-  <hr>
-  <div class="my-10　bg-blue-50">
-  <h4>検索機能</h4>
-  <%= search_form_for @q, url: search_managements_path,
-                      html: { method: :post } do |f| %>
-    <%= f.label :user_name_cont, 'Name' %>
-    <%= f.search_field :user_name_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Name" %>
+          <%= link_to "管理者画面", users_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
 
-    <%= f.label :date_cont, '稼働月' %>
-    <%= f.search_field :date_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "稼働月を入力ください" %>
+          <div class="mt-10 my-10　bg-blue-50">
+            <h4>検索機能</h4>
+            <%= search_form_for @q, url: search_managements_path,
+                                html: { method: :post } do |f| %>
+              <%= f.label :user_name_cont, 'Name' %>
+              <%= f.search_field :user_name_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Name" %>
 
-    <%= f.label :management_state_cont, '稼働ステータス' %>
-    <%= f.search_field :management_state_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "ステータス" %>
+              <%= f.label :date_cont, '稼働月' %>
+              <%= f.search_field :date_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "稼働月を入力ください" %>
 
-    <%= f.submit '検索',class: "px-4 py-2 mt-2 text-black rounded-lg bg-opacity-50 hover:bg-blue-900" %>
-  <% end %>
-    <hr>
-  </div><br>
+              <%= f.submit '検索', class: "px-4 py-2 mt-2 text-black rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+            <% end %>
 
-  <% case @user.role %>
-  <% when 'general' %>
-    <%= link_to "新規登録", new_management_path %>
-  <% end %>
-  <table class="border-separate border border-blue-800">
-    <tbody>
-
-    <tr>
-      <th class="border border-blue-600">アカウントステータス</th>
-      <th class="border border-blue-600"> <%= sort_link(@q, :user_name) do %>
-          <strong>Name</strong>
-        <% end %></th>
-
-      <th class="border border-blue-600"> <%= sort_link(@q, :date) do %>
-          <strong>稼働月</strong>
-        <% end %></th>
-
-      <th class="border border-blue-400">稼働時間</th>
-
-      <th class="border border-blue-400">単価</th>
-      <th class="border border-blue-400">単位</th>
-      <th class="border border-blue-400">稼働ステータス</th>
-      <th class="border border-blue-400">ステータス変更</th>
-
-    </tr>
-
-    <% @user_managements.each do |m| %>
-      <tr>
-        <td class="border border-blue-400"><%= m.user.account_state %></td>
-        <td class="border border-blue-400"><%= m.user.name %></td>
-        <td class="border border-blue-400"><%= m.date.strftime("%Y年%m月") %></td>
-        <td class="border border-blue-400"><%= m.uptime %></td>
-        <% if m.user.wage.present? %>
-          <td class="border border-blue-400"><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0) %></td>
-          <td class="border border-blue-400"><%= m.user.wage.unit %></td>
-        <% else %>
-          <td class="border border-blue-400"> 未設定です</td>
-          <td class="border border-blue-400"> 未設定です</td>
-        <% end %>
-        <td class="border border-blue-400"><%= m.management_state %></td>
-        <td class="border border-blue-400">
-          <div class="md:flex space-x-2 ">
-          <%= button_to "活動・休止", user_state_path(id: m.user_id), method: :get, class: "px-2 py-2 mt-2 text-white bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
-          <%= button_to "承認", wage_state_path(id: m.id), method: :get, class: "px-2 py-2 mt-2 text-white bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
           </div>
-        </td>
 
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
 
-  <hr>
-  <%= paginate @user_managements %>
-  <hr>
+            <% if @user.role == 'general' %>
+              <%= link_to "新規登録", new_management_path %>
+            <% end %>
 
-  <div>
-    <%= link_to "Back", :back %>
+            <table class="mt-10 table-auto w-full">
+              <tbody>
+
+              <tr class="bg-blue-500  bg-opacity-20">
+                <th class="p-2 whitespace-nowrap">アカウントステータス</th>
+                <th class="p-2 whitespace-nowrap"> <%= sort_link(@q, :user_name) do %>
+                    <strong>Name</strong>
+                  <% end %></th>
+
+                <th class="p-2 whitespace-nowrap"> <%= sort_link(@q, :date) do %>
+                    <strong>稼働月</strong>
+                  <% end %></th>
+
+                <th class="p-2 whitespace-nowrap">稼働時間</th>
+
+                <th class="p-2 whitespace-nowrap">単価</th>
+                <th class="p-2 whitespace-nowrap">単位</th>
+                <th class="p-2 whitespace-nowrap">稼働ステータス</th>
+                <th class="p-2 whitespace-nowrap">ステータス変更</th>
+
+              </tr>
+
+              <% @user_managements.each do |m| %>
+                <tr>
+                  <td class="border border-blue-400"><%= m.user.account_state %></td>
+                  <td class="border border-blue-400"><%= m.user.name %></td>
+                  <td class="border border-blue-400"><%= m.date.strftime("%Y年%m月") %></td>
+                  <td class="border border-blue-400"><%= m.uptime %></td>
+                  <% if m.user.wage.present? %>
+                    <td class="border border-blue-400"><%= number_to_currency(m.user.wage.unit_price, unit: "¥", format: "%u %n", precision: 0) %></td>
+                    <td class="border border-blue-400"><%= m.user.wage.unit %></td>
+                  <% else %>
+                    <td class="border border-blue-400"> 未設定です</td>
+                  <% end %>
+                  <td class="border border-blue-400"><%= m.management_state %></td>
+                  <td class="border border-blue-400">
+                    <div class="md:flex space-x-2 ">
+                      <%= link_to "活動・休止", user_state_path(id: m.user_id), class: "px-2 py-2 mt-2 text-white bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+                      <%= link_to "承認", wage_state_path(id: m.id), class: "px-2 py-2 mt-2 text-white bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+                    </div>
+                  </td>
+
+                </tr>
+              <% end %>
+              </tbody>
+            </table>
+          <%= paginate @user_managements %>
+          <hr>
+
+          <div>
+            <%= link_to "Back", :back %>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
