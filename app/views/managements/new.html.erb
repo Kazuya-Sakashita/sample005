@@ -1,30 +1,34 @@
-<h1><p>稼働状況入力画面 </h1>
-<h2>新規登録 </h2>
+<div class="container mx-auto px-8">
+  <h1 class=" text-4xl font-bold"><p>稼働状況入力画面</h1>
+  <%= link_to "稼働管理一覧に戻る", managements_path, class: "px- py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
 
-<%= link_to "稼働管理一覧", managements_path %>
-<hr>
-<%= form_with model: @management, url: managements_path, id: 'new_management', class: 'new_management', local: true do |f| %>
 
-    <%= f.hidden_field :user_id, :value => current_user.id %>
-    <%= f.hidden_field :project, :value => 0 %>
-    <div class="field">
-    <%= f.label :date %><br />
-    <%= f.select :date, @end_of_months %>
-    </div>
+  <h2>新規登録 </h2>
 
-    <div class="field">
-    <%= f.label :uptime %><br />
-    <%= f.text_field :uptime, autofocus: true %>
-    </div>
+  <div>
+    <%= form_with model: @management, url: managements_path, id: 'new_management', class: 'new_management', local: true do |f| %>
 
-    <div class="field">
-    <%= f.label :unit %><br />
-    <%= f.select :unit, User.units.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
-    </div>
+      <%= f.hidden_field :user_id, :value => current_user.id %>
+      <%= f.hidden_field :project, :value => 0 %>
+      <div class="pt-5">
+        <%= f.label :date %><br/>
+        <%= f.select :date, @end_of_months,class:"select-auto" %>
+      </div>
 
-    <div class="actions">
-    <%= f.submit "稼働登録" %>
+      <div class="pt-5">
+        <%= f.label :uptime %><br/>
+        <%= f.text_field :uptime, autofocus: true,class: "w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" %>
+      </div>
+
+      <div class="pt-5">
+        <%= f.label :unit %><br/>
+        <%= f.select :unit, User.units.keys.map { |k| [k, k] }, { class: 'form-control', required: true } %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "稼働登録" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
-
-<%= link_to "Back", :back %>
+  <%= link_to "Back", :back %>
+</div>

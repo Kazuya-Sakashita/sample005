@@ -1,53 +1,67 @@
-<h1>MyPage </h1>
+<div class="container mx-auto px-8">
+  <h1>MyPage </h1>
 
-<% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
-    <h4> メールアドレス： <%= current_user.email %> </h4>
-    <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-<% end %>
-
-<br>
-
-<li><%= link_to "基本情報", edit_mypage_path(current_user.id) %></li>
-<li><%= link_to "基本情報SKILL", skill_managements_path %></li>
-<li><%= link_to "稼働管理", managements_path %></li>
-<hr>
-<div>
+  <% if user_signed_in? %> <!-- ユーザーがログインしているか調べる -->
+    <div class="md:flex text-gray-500">
+      <h4 class="px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900">
+        メールアドレス： <%= current_user.email %> </h4>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-3 py-3 hover:text-white" %>
+  <% end %>
+  </div>
+  <br>
+  <div>
+    <%= link_to "基本情報", edit_mypage_path(current_user.id), class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+    <%= link_to "基本情報SKILL", skill_managements_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+    <%= link_to "稼働管理", managements_path, class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
+  </div>
+  <hr>
+  <div>
     <h2>登録情報</h2>
     <div class="profile-view">
-    <table>
-    <tbody>
+      <table class="border-separate border border-blue-800">
+        <tbody>
         <tr>
-        <th>メールアドレス:</th> <td> <%= @user.email %></td>
+          <th class="border border-blue-400">メールアドレス:</th>
+          <td class="border border-blue-400"> <%= @user.email %></td>
         </tr>
         <tr>
-        <th>氏名:</th>          <td><%= @user.name %></td>
-        </tr>        <tr>
-        <th>電話番号:</th>       <td><%= @user.phone_number %></td>
-        </tr>        <tr>
-        <th>スキル:</th> 
-            <td> <% @user.skill_managements.each do |skill| %>
-                <%= skill.skill.skill %> /
-                     <%= skill.skill_level %>　　
-               <% end %></td>
-        </tr>        
-        <tr>
-        <th>Githubアカウント:</th> <td><%=link_to @user.github_url , @user.github_url, target: :_blank %></td>
-        </tr>        <tr>
-        <th>口座情報:</th>       <td><%= @user.account_info %></td>
+          <th class="border border-blue-400">氏名:</th>
+          <td class="border border-blue-400"><%= @user.name %></td>
         </tr>
         <tr>
-        <% if @wage.present? %> 
-        <th>単価:</th>
-        <td><%= @wage.unit_price %></td>
+          <th class="border border-blue-400">電話番号:</th>
+          <td class="border border-blue-400"><%= @user.phone_number %></td>
         </tr>
         <tr>
-        <th>単位:</th>
-        <td><%= @wage.unit %></td>
+          <th class="border border-blue-400">スキル:</th>
+          <td class="border border-blue-400">
+            <% @user.skill_managements.each do |skill| %>
+              <%= skill.skill.skill %> /
+              <%= skill.skill_level %>　　
+            <% end %></td>
         </tr>
-        <% end %>
+        <tr>
+          <th class="border border-blue-400">Githubアカウント:</th>
+          <td class="border border-blue-400"><%= link_to @user.github_url, @user.github_url, target: :_blank %></td>
+        </tr>
+        <tr>
+          <th class="border border-blue-400">口座情報:</th>
+          <td class="border border-blue-400"><%= @user.account_info %></td>
+        </tr>
+        <tr>
+          <% if @wage.present? %>
+            <th class="border border-blue-400">単価:</th>
+            <td class="border border-blue-400"><%= @wage.unit_price %></td>
+            </tr>
+            <tr>
+              <th class="border border-blue-400">単位:</th>
+              <td class="border border-blue-400"><%= @wage.unit %></td>
+            </tr>
+          <% end %>
           </tbody>
 
-    </table>
+      </table>
 
     </div>
+  </div>
 </div>

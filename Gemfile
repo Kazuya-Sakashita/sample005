@@ -30,7 +30,7 @@ gem 'dotenv-rails', '>= 2.7.6'
 gem 'devise-i18n', '~> 1.10'
 gem 'omniauth-rails_csrf_protection', '~> 1.0'
 gem 'pundit', '~> 1.1'
-
+gem 'tailwindcss-rails', '~> 0.5.1'
 gem 'aasm', '~> 5.2'
 gem 'after_commit_everywhere', '~> 1.0'
 gem 'ransack', '~> 2.4', '>= 2.4.2'

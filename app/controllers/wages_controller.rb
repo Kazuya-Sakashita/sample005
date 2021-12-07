@@ -17,7 +17,6 @@ class WagesController < ApplicationController
 
   def show
     @wage = Wage.where(user_id: current_user.id)
-
   end
 
   def destroy
@@ -35,7 +34,6 @@ class WagesController < ApplicationController
     @user_list = User.where.not(role: 1).select(:id).pluck(:id)
     @unregistered_users_id = @user_list - @wage_user
     @unregistered_users = User.where(id: @unregistered_users_id)
-
   end
 
   def create
@@ -51,7 +49,6 @@ class WagesController < ApplicationController
     else
       redirect_to wages_path
     end
-
   end
 
   def wage_params
