@@ -1,6 +1,6 @@
 <div class="h-screen overflow-hidden flex">
   <div class="container mx-auto p-6 font-mono">
-    <div class="md:flex max-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+<!--    <div class="md:flex max-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">-->
       <div class="container mx-auto px-8">
         <h1 class="md:text-lg xl:text-xl font-semibold text-indigo-500 ">単価設定画面</h1>
         <div class="md:flex mt-4 space-x-2">
@@ -11,26 +11,25 @@
 
         ＃namaでの検索を追加する
 
-        <hr>
 
-        <table class="">
+        <table class="table-auto w-full">
           <tbody>
-          <tr>
-            <td>名前</td>
-            <td>メールアドレス</td>
-            <td>単価</td>
-            <td>単位</td>
-            <td>編集内容</td>
+          <tr class="bg-blue-500  bg-opacity-20">
+            <th class="p-2 whitespace-nowrap">名前</th>
+            <th class="p-2 whitespace-nowrap">メールアドレス</th>
+            <th class="p-2 whitespace-nowrap">単価</th>
+            <th class="p-2 whitespace-nowrap">単位</th>
+            <th class="p-2 whitespace-nowrap">編集内容</th>
           </tr>
 
 
           <% @wages.each do |wage| %>
             <tr>
-              <td><%= wage.user.name %></td>
-              <td><%= wage.user.email %></td>
-              <td><%= number_to_currency(wage.unit_price, unit: "¥", format: "%u %n", precision: 0) %></td>
-              <td><%= wage.unit %></td>
-              <td> <%= link_to "編集", edit_wage_path(id: wage.id), class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
+              <td class="border border-blue-400"><%= wage.user.name %></td>
+              <td class="border border-blue-400"><%= wage.user.email %></td>
+              <td class="border border-blue-400"><%= number_to_currency(wage.unit_price, unit: "¥", format: "%u %n", precision: 0) %></td>
+              <td class="border border-blue-400"><%= wage.unit %></td>
+              <td class="border border-blue-400"> <%= link_to "編集", edit_wage_path(id: wage.id), class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
                 <%= link_to "削除", wage_path(id: wage.id), method: :delete, data: { confirm: "削除しますか？" }, class: "px-2 py-2 mt-2 text-white bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900" %></td>
 
             </tr>
