@@ -8,12 +8,8 @@ module.exports = {
       lg: '976px',
       xl: '1440px',
     },
-    colors: {
-      gray: colors.coolGray,
-      blue: colors.teal,
-      red: colors.rose,
-      pink: colors.fuchsia,
-    },
+    // colors: {
+    // },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
       serif: ['Merriweather', 'serif'],

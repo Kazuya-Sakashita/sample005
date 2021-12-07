@@ -1,6 +1,6 @@
 <div class="h-screen overflow-hidden flex >
   <div class=" container mx-auto p-6 font-mono">
-    <div class="md:flex max-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
+<!--    <div class="md:flex max-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">-->
   <div class="px-5 py-4 border-b border-gray-100">
     <h1 class="md:text-lg xl:text-xl font-semibold text-indigo-500">管理者画面</h1>
 
@@ -49,17 +49,17 @@
     <table class="table-auto w-full ">
       <thead>
       <tr class="bg-blue-500  bg-opacity-20">
-        <th class="w-1/4 p-2 whitespace-nowrap">
-          <div class="font-semibold text-left ">Name</div>
+        <th class="p-2 whitespace-nowrap">
+          <div class="font-semibold text-center ">Name</div>
         </th>
-        <th class="w-1/4 p-2 whitespace-nowrap">
-          <div class="font-semibold text-left">Email</div>
+        <th class="p-2 whitespace-nowrap">
+          <div class="font-semibold text-center">Email</div>
         </th>
-        <th class="w-1/4 p-2 whitespace-nowrap">
-          <div class="font-semibold text-left">skill</div>
+        <th class="p-2 whitespace-nowrap">
+          <div class="font-semibold text-center">skill</div>
         </th>
-        <th class="w-1/4 p-2 whitespace-nowrap">
-          <div class="font-semibold text-left">account_state</div>
+        <th class="p-2 whitespace-nowrap">
+          <div class="font-semibold text-center">account_state</div>
         </th>
       </tr>
       </thead>
@@ -67,19 +67,19 @@
       <% @users.each do |user| %>
         <tr>
 
-          <td class="p-2 whitespace-nowrap">
+          <td class="border border-blue-400">
             <div class="flex items-center">
               <div class="font-medium text-gray-800"><%= user.name %></div>
             </div>
           </td>
-          <td class="p-2 whitespace-nowrap">
+          <td class="border border-blue-400">
             <div class="flex items-center">
               <div class="font-medium text-gray-800"><%= user.email %></div>
             </div>
           </td>
-          <td class="p-2 whitespace-nowrap">
+          <td class="border border-blue-400">
             <div class="flex items-center">
-              <div class="font-medium text-gray-800">
+              <div class="text-center font-medium text-gray-800">
                 <% user.skill_managements.each do |skill| %>
                   <%= skill.skill.skill %> /
                   <%= skill.skill_level %>　　
@@ -87,7 +87,7 @@
               </div>
             </div>
           </td>
-          <td class="p-2 whitespace-nowrap">
+          <td class="border border-blue-400">
             <div class="flex items-center">
               <div class="font-medium text-gray-800">
                 <% if user.account_state == 'tentative' %>
