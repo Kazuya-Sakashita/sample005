@@ -19,44 +19,44 @@
     <div class="py-4">
       <h2>登録情報</h2>
       <div class="profile-view">
-        <table class="border-separate border border-blue-800">
+        <table class="table-auto w-full">
           <tbody>
           <tr>
-            <th class="border border-blue-400">メールアドレス:</th>
-            <td class="border border-blue-400"> <%= @user.email %></td>
+            <th class="border border-indigo-500">メールアドレス:</th>
+            <td class="border border-indigo-500"> <%= @user.email %></td>
           </tr>
           <tr>
-            <th class="border border-blue-400">氏名:</th>
-            <td class="border border-blue-400"><%= @user.name %></td>
+            <th class="border border-indigo-500">氏名:</th>
+            <td class="border border-indigo-500"><%= @user.name %></td>
           </tr>
           <tr>
-            <th class="border border-blue-400">電話番号:</th>
-            <td class="border border-blue-400"><%= @user.phone_number %></td>
+            <th class="border border-indigo-500">電話番号:</th>
+            <td class="border border-indigo-500"><%= @user.phone_number %></td>
           </tr>
           <tr>
-            <th class="border border-blue-400">スキル:</th>
-            <td class="border border-blue-400">
+            <th class="border border-indigo-500">スキル:</th>
+            <td class="border border-indigo-500">
               <% @user.skill_managements.each do |skill| %>
                 <%= skill.skill.skill %> /
                 <%= skill.skill_level %>　　
               <% end %></td>
           </tr>
           <tr>
-            <th class="border border-blue-400">Githubアカウント:</th>
-            <td class="border border-blue-400"><%= link_to @user.github_url, @user.github_url, target: :_blank %></td>
+            <th class="border border-indigo-500">Githubアカウント:</th>
+            <td class="border border-indigo-500"><%= link_to @user.github_url, @user.github_url, target: :_blank %></td>
           </tr>
           <tr>
-            <th class="border border-blue-400">口座情報:</th>
-            <td class="border border-blue-400"><%= @user.account_info %></td>
+            <th class="border border-indigo-500">口座情報:</th>
+            <td class="border border-indigo-500"><%= @user.account_info %></td>
           </tr>
           <tr>
             <% if @wage.present? %>
-              <th class="border border-blue-400">単価:</th>
-              <td class="border border-blue-400"><%= number_to_currency(@wage.unit_price, unit: "¥", format: "%u %n", precision: 0) %></td>
+              <th class="border border-indigo-500">単価:</th>
+              <td class="border border-indigo-500"><%= number_to_currency(@wage.unit_price, unit: "¥", format: "%u %n", precision: 0) %></td>
               </tr>
               <tr>
-                <th class="border border-blue-400">単位:</th>
-                <td class="border border-blue-400"><%= @wage.unit %></td>
+                <th class="border border-indigo-500">単位:</th>
+                <td class="border border-indigo-500"><%= @wage.unit %></td>
               </tr>
             <% end %>
             </tbody>
