@@ -10,19 +10,19 @@
   </div>
   <div class="py-4">
 
-    <table class="my-4 border-separate border border-blue-800">
+    <table class="mt-10 table-auto w-full">
       <tbody>
-      <tr>
-        <td class="border border-blue-400">スキル</td>
-        <td class="border border-blue-400">スキルレベル</td>
-        <td class="border border-blue-400">編集</td>
+      <tr class="bg-indigo-500  bg-opacity-20">
+        <td class="border border-indigo-500">スキル</td>
+        <td class="border border-indigo-500">スキルレベル</td>
+        <td class="border border-indigo-500">編集</td>
       </tr>
 
       <% @personal_skill.each do |s| %>
         <tr>
-          <td class="border border-blue-400"><%= s.skill.skill %></td>
-          <td class="border border-blue-400"><%= s.skill_level %></td>
-          <td class="border border-blue-400">
+          <td class="border border-indigo-500"><%= s.skill.skill %></td>
+          <td class="border border-indigo-500"><%= s.skill_level %></td>
+          <td class="border border-indigo-500">
             <div class="md:flex space-x-2 ">
               <%= link_to "編集", edit_skill_management_path(id: s.id), class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
               <%= link_to "削除", skill_management_path(id: s.id), method: :delete, data: { confirm: "削除しますか？" }, class: "px-2 py-2 mt-2 text-white bg-blue-400 rounded-lg bg-opacity-50 hover:bg-blue-900" %>
