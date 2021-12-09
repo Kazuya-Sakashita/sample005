@@ -2,7 +2,7 @@
   <div class=" container mx-auto p-6 font-mono">
     <!--    <div class="md:flex max-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">-->
     <div class="px-5 py-4 border-b border-gray-100">
-      <h1 class="md:text-lg xl:text-xl font-semibold text-indigo-500">管理者画面</h1>
+      <h1 class="text-4xl font-bold pt-2">管理者画面</h1>
 
       <div class="md:flex text-gray-500">
         <% if current_user.present? %>
@@ -32,10 +32,10 @@
         <%= search_form_for @q, url: search_users_path,
                             html: { method: :post } do |f| %>
           <%= f.label :name_cont, 'Name' %>
-          <%= f.search_field :name_cont, class: "md:w-auto px-4 py-2 mt-2 rounded-full border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Name" %>
+          <%= f.search_field :name_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Name" %>
 
           <%= f.label :skills_skill_cont, 'スキル' %>
-          <%= f.search_field :skills_skill_cont, class: "md:w-auto px-4 py-2 mt-2 rounded-full border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "スキル、例）PHPなど" %>
+          <%= f.search_field :skills_skill_cont, class: "md:w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "スキル、例）PHPなど" %>
           <%= f.submit '検索', class: "ml-1 outline-none focus:outline-none active:outline-none" %>
         <% end %>
         #現状、スキルレとスキルレベルの掛け合わせでの検索がエラーのため使用出来ない
@@ -48,7 +48,7 @@
       <br>
       <table class="table-auto w-full">
         <thead>
-        <tr class="bg-blue-500  bg-opacity-20">
+        <tr class="bg-indigo-500  bg-opacity-20">
           <th class="p-2 whitespace-nowrap">
             <div class="font-semibold text-center ">Name</div>
           </th>
@@ -67,17 +67,17 @@
         <% @users.each do |user| %>
           <tr>
 
-            <td class="border border-blue-400">
+            <td class="border border-indigo-500">
               <div class="flex items-center">
                 <div class="font-medium text-gray-800"><%= user.name %></div>
               </div>
             </td>
-            <td class="border border-blue-400">
+            <td class="border border-indigo-500">
               <div class="flex items-center">
                 <div class="font-medium text-gray-800"><%= user.email %></div>
               </div>
             </td>
-            <td class="border border-blue-400">
+            <td class="border border-indigo-500">
               <div class="flex items-center">
                 <div class="text-center font-medium text-gray-800">
                   <% user.skill_managements.each do |skill| %>
@@ -87,7 +87,7 @@
                 </div>
               </div>
             </td>
-            <td class="border border-blue-400">
+            <td class="border border-indigo-500">
               <div class="flex items-center">
                 <div class="font-medium text-gray-800">
                   <% if user.account_state == 'tentative' %>

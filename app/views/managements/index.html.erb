@@ -28,8 +28,7 @@
       <% end %>
 
       <table class="mt-10 table-auto w-full">
-        <tbody>
-
+        <thead>
         <tr class="bg-indigo-500  bg-opacity-20">
           <th class="p-2 whitespace-nowrap">アカウントステータス</th>
           <th class="p-2 whitespace-nowrap"> <%= sort_link(@q, :user_name) do %>
@@ -46,12 +45,16 @@
           <th class="p-2 whitespace-nowrap">単位</th>
           <th class="p-2 whitespace-nowrap">稼働ステータス</th>
           <th class="p-2 whitespace-nowrap">ステータス変更</th>
-
         </tr>
-
+        </thead>
+        <tbody class="text-sm divide-y divide-gray-100">
         <% @user_managements.each do |m| %>
           <tr>
-            <td class="border border-indigo-500"><%= m.user.account_state %></td>
+            <td class="border border-indigo-500">
+              <div class="flex items-center">
+              <%= m.user.account_state %>
+              </div>
+            </td>
             <td class="border border-indigo-500"><%= m.user.name %></td>
             <td class="border border-indigo-500"><%= m.date.strftime("%Y年%m月") %></td>
             <td class="border border-indigo-500"><%= m.uptime %></td>

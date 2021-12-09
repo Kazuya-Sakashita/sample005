@@ -1,21 +1,30 @@
+<div class="h-screen overflow-hidden flex">
+  <div class="container mx-auto p-6 font-mono">
+    <!--    <div class="md:flex max-w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">-->
+    <div class="container mx-auto px-8">
+      <h1 class="text-4xl font-bold pt-2">単価設定画面</h1>
+      <div class="pt-5">
+        <%= link_to "単価設定画面に戻る", wages_path, class: "inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-3 py-3 hover:text-white" %>
+        <%= link_to "管理者画面に戻る", users_path, class: "inline-block bg-gray-200 hover:bg-gray-300 focus-visible:ring ring-indigo-300 text-gray-500 active:text-gray-700 text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-3 py-3 hover:text-white" %>
+      </div>
 
-  <%= form_with model: @wage, url:  wage_path, id: 'new_management', class: 'new_management', local: true do |f| %>
-    <div class="field">
-    <%= f.label :user_id %><br />
-    <%= f.hidden_field :user_id, :value => @wage.user_id %>
-    </div>
+      <%= form_with model: @wage, url: wage_path, id: 'new_management', class: 'new_management', local: true do |f| %>
+        <div class="pt-5">
+          <%#= f.label :user_id %>
+          <%= f.hidden_field :user_id, :value => @wage.user_id %>
+        </div>
 
-    <div class="field">
-    <%= f.label :unit_price %><br />
-    <%= f.text_field :unit_price, autofocus: true %>
-    </div>
+        <div class="pt-5">
+          <%= f.label :unit_price %><br/>
+          <%= f.text_field :unit_price, autofocus: true, class: "w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" %>
+        </div>
 
-    <div class="field">
-    <%= f.label :unit %><br />
-    <%= f.text_field :unit, autofocus: true %>
-    </div>
-    
-    <div class="actions">
-    <%= f.submit "登録" %>
-  </div>
+        <div class="pt-5">
+          <%= f.label :unit %><br/>
+          <%= f.select :unit, Wage.units.keys.map { |k| [k, k] }, {}, { class: "border border-gray-300 rounded-md text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none", required: true } %>
+        </div>
+
+        <div class="pt-5">
+          <%= f.submit "登録", class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
+        </div>
 <% end %>
