@@ -18,7 +18,7 @@
 
       <% @user_management.each do |m| %>
         <tr>
-          <td class="border border-indigo-500"><%= m.date %></td>
+          <td class="border border-indigo-500"><%= m.date.strftime("%Y年%m月") %></td>
           <td class="border border-indigo-500"><%= m.uptime %></td>
 
           <% if m.user.wage.present? %>

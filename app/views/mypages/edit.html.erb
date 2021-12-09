@@ -8,11 +8,12 @@
           <%= link_to "基本情報管理画面", mypage_path(current_user.id), class: "mt-2 inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
         </div>
         <div class="py-4">
-          <h2>下記フォームから変更ができます。</h2>
-
-          <%= form_with model: @user, url: user_registration_path, id: 'new_user', class:"grid grid-cols-1 gap-6 m-16", local: true do |f| %>
+          <p>下記フォームから変更ができます。</p>
+        </div>
+        <div class="m-2 pt-2 ">
+          <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: "grid grid-cols-1 gap-6", local: true do |f| %>
             <!--アカウント編集時に名前を入力できるようにフォームを追加-->
-            <div class="pt-5">
+            <div class="pt-2">
               <%= f.label :name, class: "block" %>
               <%= f.text_field :name, autofocus: true, class: "w-auto px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600" %>
             </div>
