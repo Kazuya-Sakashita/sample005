@@ -22,9 +22,9 @@
         <%= f.label :password_confirmation, class:"text-lg font-semibold" %><br/>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Password" %>
       </div>
-      <div class="md:flex md:justify-around">
+      <div class="md:flex md:justify-around items-center mb-1 mt-5 justify-center">
         <div class="actions">
-          <%= f.submit "Sign up", class: "px-6 py-2 mt-4 text-white bg-blue-600 rounded-lg hover:bg-blue-900 md:border-none border-b" %>
+          <%= f.submit "Sign up", class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
         </div>
     <% end %>
 

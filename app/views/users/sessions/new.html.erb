@@ -4,12 +4,12 @@
 
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="mt-4">
-        <%= f.label :email, class:"text-lg font-semibold" %>
+        <%= f.label :email, class: "text-lg font-semibold" %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Email" %>
       </div>
 
       <div class="mt-4">
-        <%= f.label :password, class:"text-lg font-semibold" %>
+        <%= f.label :password, class: "text-lg font-semibold" %>
         <%= f.password_field :password, autocomplete: "current-password", class: "w-full px-4 py-2 mt-2 border rounded-md focus:outline-none focus:ring-1 focus:ring-blue-600", placeholder: "Password" %>
       </div>
 
@@ -19,7 +19,7 @@
           <%= f.label :remember_me %>
         </div>
       <% end %>
-      <div class="md:flex md:justify-around">
+      <div class="md:flex md:justify-around items-center mb-1 justify-center">
         <div class="actions">
           <%= f.submit "Log in", class: "inline-block bg-indigo-500 hover:bg-indigo-600 active:bg-indigo-700 focus-visible:ring ring-indigo-300 text-white text-sm md:text-base font-semibold text-center rounded-lg outline-none transition duration-100 px-8 py-3" %>
         </div>
