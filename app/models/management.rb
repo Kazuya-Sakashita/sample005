@@ -4,6 +4,8 @@ class Management < ApplicationRecord
   belongs_to :wage, optional: true
   belongs_to :user
 
+  validates :date, uniqueness: { scope: :user } # 重複を保存しない
+
   # enum unit: { hours: 0, days: 1 }
 
   aasm column: :management_state, timestamps: true do

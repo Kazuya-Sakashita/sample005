@@ -48,12 +48,5 @@ class User < ApplicationRecord
     event :inactive do
       transitions from: [:active, :sleeping], to: :inactive
     end
-    # event :sleep do
-    #   transitions from: :tentative, to: :sleeping, guard: :cleaning_needed?
-    # end
-  end
-
-  def cleaning_needed?
-    false
   end
 end

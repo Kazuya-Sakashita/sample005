@@ -27,8 +27,11 @@ class ManagementsController < ApplicationController
     @management = Management.new(management_params)
     params[:date] = params[:date].to_datetime # データ変換しなければ保存できない
     # @management.user_id = current_user.id
-    @management.save
-    flash[:notice] = '投稿しました！'
+    if @management.save
+      flash[:notice] = '投稿しました！'
+    else
+      flash[:alert] = '投稿できませんでした！'
+    end
     redirect_to managements_path
   end
 
