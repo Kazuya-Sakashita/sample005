@@ -1,10 +1,10 @@
 <div class="container mx-auto px-8">
-  <h2 class="text-4xl font-bold ">スキル一括登録 </h2>
+  <h2 class="text-4xl font-bold ">スキル</h2>
 <%= form_with model: @form, url: skill_managements_path, method: :post, id: 'new_skill_management', class: 'new_skill_management', local: true do |form| %>
    <div class="py-4">
-    <table class="border border-blue-600 py-2">
+    <table class="mt-10 table-auto w-full">
     <thead>
-    <tr class="bg-blue-500  bg-opacity-20">
+    <tr class="bg-indigo-500  bg-opacity-20">
         <th class="p-2 whitespace-nowrap"> 登録</th>
         <th class="p-2 whitespace-nowrap"> スキル</th>
         <th class="p-2 whitespace-nowrap"> スキルレベル</th>
@@ -13,13 +13,13 @@
   <tbody>
     <%= form.fields_for :skill_managements do |f| %>
       <tr>
-        <td class="border border-blue-400 text-center ">
+        <td class="border border-indigo-500 text-center ">
         <%= f.check_box :availability %>
         </td>
-        <td class="border border-blue-400">
+        <td class="border border-indigo-500">
         <%= f.collection_select :skill_id, Skill.all, :id, :skill, :prompt => "スキルを選択してください" %><br>
         </td>
-        <td class="border border-blue-400">
+        <td class="border border-indigo-500">
         <%= f.select :skill_level, Skill.skill_levels.keys.map {|k| [k, k]}, {class: 'form-control', required: true } %>
         </td>
         <%= f.hidden_field :user_id, :value => current_user.id %>

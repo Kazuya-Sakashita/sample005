@@ -45,10 +45,10 @@ class WagesController < ApplicationController
       @user.run!
       flash[:notice] = '単価登録しました'
       @wage.save
-      redirect_to wages_path
     else
-      redirect_to wages_path
+      flash[:alert] = '単価登録できませんでした'
     end
+    redirect_to wages_path
   end
 
   def wage_params
