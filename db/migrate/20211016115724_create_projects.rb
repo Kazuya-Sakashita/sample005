@@ -5,7 +5,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.string :project_name, null: false
       t.text :project_content, null: false
       t.string :skills
-      t.string :skill_level
+      t.integer :skill_level
       t.string :budget
 
       t.timestamps
