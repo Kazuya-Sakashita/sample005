@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_101513) do
     t.string "project_name", null: false
     t.text "project_content", null: false
     t.string "skills"
-    t.string "skill_level"
+    t.integer "skill_level"
     t.string "budget"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
