@@ -1,5 +1,5 @@
 class ContactMonthlyMailer < ApplicationMailer
-  default to: -> { User.pluck(:email) },
+  default bcc: -> { User.pluck(:email) },
           from: 'notification@example.com'
 
   def contact_monthly_mail(user)
