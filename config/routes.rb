@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :clients
   resources :projects
   resources :wages
+  resources :letters ,only: [:index]
 
   get 'managements/:id/state', to: 'managements#state', as: 'user_state'
   get 'managements/:id/wagestate', to: 'managements#wagestate', as: 'wage_state'
