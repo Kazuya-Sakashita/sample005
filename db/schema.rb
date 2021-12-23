@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_11_18_101513) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "clients", force: :cascade do |t|
     t.string "company_name"
     t.string "staff"
@@ -22,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_101513) do
   end
 
   create_table "managements", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "project", default: 0, null: false
     t.integer "uptime"
     t.integer "unit"
@@ -34,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_101513) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.integer "client_id", null: false
+    t.bigint "client_id", null: false
     t.string "project_name", null: false
     t.text "project_content", null: false
     t.string "skills"
@@ -46,7 +49,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_101513) do
   end
 
   create_table "skill_managements", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "skill_id", null: false
     t.integer "skill_level", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -83,7 +86,7 @@ ActiveRecord::Schema.define(version: 2021_11_18_101513) do
   end
 
   create_table "wages", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.integer "unit_price", default: 0, null: false
     t.integer "unit", default: 0, null: false
     t.datetime "created_at", precision: 6, null: false

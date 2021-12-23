@@ -6,17 +6,16 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-30.times do |n|
+5.times do |n|
     # 一般ユーザー
     User.create!(
-      email: "general#{n + 1}@general#{n + 1}.com",
+      email: "kz.sincerity+#{n + 1}@gmail.com",
       name: "general#{n + 1}",
       password: "password",
       password_confirmation: "password",
       role: 0
     )
   end
-
 
 #スキル項目データ入力
 Skill.create!(
@@ -29,6 +28,7 @@ Skill.create!(
       {skill: 'Java'},
       {skill: 'Python'},
       {skill: 'Ruby'},
+      {skill: 'Ruby on Rails'},
       {skill: 'C++'},
       {skill: 'Swift'},
       {skill: 'WordPress'},

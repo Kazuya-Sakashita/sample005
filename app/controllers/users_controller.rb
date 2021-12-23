@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   def index
     if current_user.admin?
       @q = User.ransack(params[:q])
-      @users = @q.result.includes(:skills, :skill_managements).page(params[:page]).per(10)
+      @users = @q.result.includes(:skills, :skill_managements).order(:name).page(params[:page]).per(10)
       @user = current_user
 
     else
