@@ -1,9 +1,9 @@
 FROM ruby:3.0.1
 
 RUN apt-get update -qq && \
-    apt-get install -y nodejs \
-                       npm && \
-    npm install -g yarn
+    apt-get install -y build-essential \
+                       libpq-dev \
+                       nodejs
 
 RUN mkdir /app
 ENV APP_ROOT /app
