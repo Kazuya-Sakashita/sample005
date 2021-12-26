@@ -7,7 +7,6 @@ ruby '3.0.1'
 gem 'rails', '~> 6.1.4'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3', '~> 1.4'
-gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
@@ -37,6 +36,9 @@ gem 'after_commit_everywhere', '~> 1.0'
 gem 'ransack', '~> 2.4', '>= 2.4.2'
 gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'sidekiq', '~> 6.3', '>= 6.3.1'
+gem 'pg', '~> 1.2', '>= 1.2.3'
+gem 'nokogiri', '~> 1.12', '>= 1.12.5'
+gem 'minitest', '~> 5.15'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
