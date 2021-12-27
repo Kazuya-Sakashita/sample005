@@ -39,6 +39,7 @@ gem 'sidekiq', '~> 6.3', '>= 6.3.1'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'nokogiri', '~> 1.12', '>= 1.12.5'
 gem 'minitest', '~> 5.15'
+gem 'msgpack', '~> 1.4', '>= 1.4.2'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
